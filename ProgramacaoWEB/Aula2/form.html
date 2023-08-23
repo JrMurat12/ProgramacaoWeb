@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro Cliente</title>
+</head>
+<body>
+    <form action="index.html" method="get">
+        <fieldset>
+            <legend>Cadastro de clientes</legend>
+            <div>
+                <label for="nome">Nome</label>
+                <input type="text" name="nome" placeholder="Digite o nome..." required id="nome">
+            </div>
+            
+            <div>
+                <label>E-mail</label>
+                <input type="email" name="email" placeholder="E-mail">
+            </div>
+
+            <div>
+                <label>Cor do cabelo</label>
+                <input type="color" name="corCabelo">
+            </div>
+
+            <div>
+                <label>Data de nascimento</label>
+                <input type="date" name="dataNascimento">
+            </div>
+
+            <div>
+                <label>Foto do cliente</label>
+                <input type="file" name="fotoCliente">
+            </div>
+
+            <div>
+                <label>Altura</label>
+                <input type="number" name="altura" min="0" max="3" step="0.01">
+            </div>
+
+            <div>
+                <label>Gênero</label>
+                <input type="radio" name="genero" value="F" id="feminino">
+                <label for="feminino">Feminino</label>
+                <input type="radio" name="genero" value="M" id="masculino">
+                <label for="masculino">Masculino</label>
+            </div>
+
+            <div>
+                <label>Mão dominante</label>
+                <input type="checkbox" name="mao" value="canhoto" id="chanoto">
+                <label for="canhoto">Canhoto</label>
+                <input type="checkbox" name="genero" value="destro" id="destro">
+                <label for="destro">Destro</label>
+            </div>
+
+            <div>
+                <label>Observação</label>
+                <textarea name="observacao" cols="30" rows="3"></textarea>
+            </div>
+
+            <div>
+                <label>Estado</label>
+                <select name="estado">
+                    <optgroup name="Sudeste">
+                        <option value="SP">São Paulo</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                    </optgroup>
+                    <optgroup name="Sul">
+                        <option value="PR">Paraná</option>
+                        <option value="SC">Santa Catarina</option>
+                    </optgroup>
+                </select>
+                
+            </div>
+
+            <div>
+                <button type="reset">Limpar</button>
+                <button type="submit">Salvar</button>
+            </div>
+        </fieldset>
+    </form>
+</body>
+</html>
