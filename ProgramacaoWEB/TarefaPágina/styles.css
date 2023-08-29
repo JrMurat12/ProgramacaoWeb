@@ -1,0 +1,31 @@
+:root {
+    --preto: #000000;
+    --fonte-principal: "Roboto";
+}
+
+
+body {
+    font-family: var(--fonte-principal);
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.check__botao:checked {
+    background-color: var(--preto);
+    color: var(--preto);
+    border-color: var(--preto);
+}
+
+
+.img_table {
+    padding-right: 7em;
+}
+
+.comentario {
+    margin-top: 1em;
+    padding-left: 3em;
+}
+
+.fonte {
+    font-weight: 100;
+}
