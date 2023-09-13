@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CardapioMcDonalds</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <header class="cabecalho">
+        <div class="container">
+            <img src="img/logo-mc.png" alt="Logo da McDonals" class="container__imagem">
+            <h1 class="container__titulo"><b class="container__titulo--negrito">Mc</b>Donalds</h1>
+        </div>
+    </header>
+    <section class="banner">
+        <h2 class="banner__titulo">Cardápio</h2>
+        <p class="banner__texto">Faça já seu pedido!</p>
+    </section>
+    <section class="carrossel">
+        <h2 class="carrossel__titulo">Lanches</h2>
+            <div class="carrossel__container">
+                <div class="swiper">
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><img src="img/Big-Mac.png" alt="BigMac" class="carrossel__imagem"><p class="texto__imagem">Big Mac - R$ 29,90</p></div>
+                        <div class="swiper-slide"><img src="img/Duplo-Quarteirao.png" alt="DuploQuarteirao" class="carrossel__imagem"><p class="texto__imagem">Duplo Quarteirão - R$ 26,90</p></div>
+                        <div class="swiper-slide"><img src="img/Mc-Melt.png" alt="McMelt" class="carrossel__imagem"><p class="texto__imagem">Duplo Cheddar McMelt - R$ 19,90</p></div>
+                        <div class="swiper-slide"><img src="img/Mc-Nifico.png" alt="McNifico" class="carrossel__imagem"><p class="texto__imagem">McNífico Bacon - R$ 25,90</p></div>
+                    </div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+
+                <div class="card">
+                    <!-- 1º linha-->
+                    <div class="card__descricao">
+                        <!-- 1º coluna -->
+                        <div class="descricao">
+                            <h3 class="descricao__titulo">Em destaque...</h3>
+                            <h2 class="descricao__titulo__livro">Lançamento Brabo Melt Crispy</h2>
+                            <p class="descricao__texto">Por apenas R$ 38,90 acompanhado de batata frita e bebida.</p>
+                        </div>
+                        <!-- 2º coluna -->
+                        <img src="img/Brabo.png" class="descricao__imagem">
+                    </div>
+
+                    <!-- 2º linha -->
+                    <div class="card__botoes">
+                        <!-- 1º coluna -->
+                        <ul class="botoes">
+                            <li class="botoes__item"><img src="img/logo-mc.png" alt="LogoMc"></li>
+                        </ul>
+                        <!-- 2º coluna -->
+                        <a href="#" class="botoes__ancora">Saiba mais</a>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+        const swiper = new Swiper('.swiper', {
+            spaceBetween: 10,
+            slidesPerView: 3,
+            pagination: {
+                el: '.swiper-pagination',
+                type: 'bullets',
+            },
+      });
+    </script>
+</body>
+</html>

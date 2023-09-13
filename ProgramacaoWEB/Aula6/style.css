@@ -1,0 +1,63 @@
+body {
+    background-color: black;
+    color: black;
+}
+
+.container {
+    background-color: white;
+    border-radius: 20px;
+    margin: 0px auto;
+    max-width: 700;
+    min-height: 400;  
+    padding: 15px; 
+}
+
+.inline {
+    display: inline;
+}
+
+.esquerda {
+    float: left;
+    margin: 0px;
+    background-color: red;
+    width: 60px;
+    height: 60px;
+}
+
+.direita {
+    float: right;
+    margin: 0px;
+    background-color: blue;
+    width: 60px;
+    height: 60px;
+}
+
+.fixado {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+}
+
+#titulo {
+    font-size: x-large;
+    font-family: Verdana;
+    font-weight: bold;
+    text-align: center;
+}
+
+a:link {
+    color: darkgreen;
+}
+
+a:hover {
+    font-size: 20px;
+}
+
+a:visited {
+    color: grey;
+}
+
+a:active {
+    color: orange;
+    font-size: 25px;
+}
