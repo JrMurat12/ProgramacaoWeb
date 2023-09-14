@@ -37,15 +37,6 @@
     margin-bottom: 0.5em;
 }
 
-.card__botoes {
-    display: flex;
-    justify-content: space-between;
-}
-
-.botoes {
-    display: flex;
-}
-
 .card {
     border-radius: 10px;
     background: var(--branco);
@@ -69,18 +60,6 @@
 
 .descricao__texto {
     font-size: 14px;
-}
-
-.botoes__item {
-    margin: 0.5em;
-}
-
-.botoes__ancora {
-    background-color: var(--laranja);
-    padding: 1em 2.2em;
-    color: var(--branco);
-    font-weight: 700;
-    text-decoration: none;
 }
 
 .descricao img {
