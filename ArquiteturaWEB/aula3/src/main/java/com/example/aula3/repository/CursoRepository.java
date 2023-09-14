@@ -7,9 +7,12 @@ import javax.swing.text.html.parser.Entity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.example.aula3.models.CategoriaCurso;
 import com.example.aula3.models.Curso;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 
