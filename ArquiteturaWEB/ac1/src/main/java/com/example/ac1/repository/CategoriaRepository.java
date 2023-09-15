@@ -46,7 +46,7 @@ public class CategoriaRepository {
     public List<Produto> obterPorId(int id){
         String jpql = " select c from Categoria c where c.id_categoria = :id_categoria";
         TypedQuery<Produto> query = entityManager.createQuery(jpql, Produto.class);
-        query.setParameter("id_categoria", "=" + id);
+        query.setParameter("id_categoria", id);
         return query.getResultList();
     }
 }
