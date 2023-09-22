@@ -20,28 +20,52 @@ public class Ac1Application {
 public CommandLineRunner init(@Autowired ProdutoRepository produtoRepository,
 @Autowired CategoriaRepository categoriaRepository) {
 	return args -> {
-		System.out.println("EXEMPLO INSERIR CATEGORIA...!");
-		Categoria c1 = new Categoria(0, "TESTES", "PRODUTOS DE TESTES", null);
-		categoriaRepository.inserir(c1);
+		Categoria categoria1 = new Categoria();
+		categoria1.setCat_nome("Eletrônicos");
 
-		System.out.println("EXEMPLO INSERIR CATEGORIA...!");
-		Categoria c2 = new Categoria(0, "FINAL", "PRODUTOS FINAIS", null);
-		categoriaRepository.inserir(c2);
+		Categoria categoria2 = new Categoria();
+		categoria2.setCat_nome("Roupas");
 
-		produtoRepository.inserir(
-			new Produto((long)0, "produto1", 2050, c1));
-		produtoRepository.inserir(
-			new Produto((long)0, "produto2", 1960, c2));
-		
-		List<Produto> listaProdutos = produtoRepository.obterTodos();
-		System.out.println("EXEMPLO OBTER POR NOME...!");
-		listaProdutos = produtoRepository.obterPorId(1);
-		listaProdutos.forEach(System.out::println);
+		categoriaRepository.save(categoria1);
+		categoriaRepository.save(categoria2);
 
-		System.out.println("EXEMPLO ATUALIZAR CATEGORIA PRODUTO...!");
-		listaProdutos.get(0).setCategoriaProduto(c1);
-		produtoRepository.inserir(listaProdutos.get(0));
+		Produto produto1 = new Produto();
+		produto1.setProd_nome("Produto 1");
+		produto1.setProd_preco(10.0);
+		produto1.setCategoriaProduto(categoria1);
 
+		Produto produto2 = new Produto();
+		produto2.setProd_nome("Produto 2");
+		produto2.setProd_preco(20.0);
+		produto2.setCategoriaProduto(categoria1);
+
+		Produto produto3 = new Produto();
+		produto3.setProd_nome("Teste 3");
+		produto3.setProd_preco(30.0);
+		produto3.setCategoriaProduto(categoria2);
+
+		produtoRepository.saveAll(List.of(produto1, produto2, produto3));
+
+		System.out.println("Produtos com preço maior que 15:");
+		List<Produto> produtosPrecoMaiorQue15 = produtoRepository.findByprodprecoGreaterThan(15.0);
+		produtosPrecoMaiorQue15.forEach(System.out::println);
+
+		System.out.println("Produtos com preço menor ou igual a 25:");
+		List<Produto> produtosPrecoMenorOuIgual25 = produtoRepository.findByprodprecoLessThanEqual(25.0);
+		produtosPrecoMenorOuIgual25.forEach(System.out::println);
+
+		System.out.println("Produtos que o nome começa com 'Produto':");
+		List<Produto> produtosNomeComecaComProduto = produtoRepository.findByprodnomeStartingWith("Produto");
+		produtosNomeComecaComProduto.forEach(System.out::println);
+
+		System.out.println("Categorias que começam com 'Elet':");
+		List<Categoria> categoriasComE = categoriaRepository.findBycatnomeStartingWith("Elet");
+		categoriasComE.forEach(System.out::println);
+
+		System.out.println("Categoria com produtos pelo ID:");
+		Categoria categoriaComProdutos = categoriaRepository.findCategoriaWithProdutosById(1L);
+		System.out.println(categoriaComProdutos.getCat_nome());
+		categoriaComProdutos.getProdutos().forEach(produto -> System.out.println("- " + produto.getProd_nome()));
 	};
 }
 

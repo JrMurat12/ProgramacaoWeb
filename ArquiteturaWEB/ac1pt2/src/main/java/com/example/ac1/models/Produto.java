@@ -14,19 +14,19 @@ import jakarta.persistence.Table;
 public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_produto;
+    private Long idproduto;
     @Column(length = 200, nullable = false)
-    private String prod_nome;
+    private String prodnome;
     @Column(nullable = false)
-    private int prod_qtd;
+    private double prodpreco;
     @ManyToOne
     @JoinColumn(name = "id_categoria")
     private Categoria categoriaProduto;
 
-    public Produto(Long id_produto, String prod_nome, int prod_qtd, Categoria categoriaProduto) {
-        this.id_produto = id_produto;
-        this.prod_nome = prod_nome;
-        this.prod_qtd = prod_qtd;
+    public Produto(Long idproduto, String prodnome, double prodpreco, Categoria categoriaProduto) {
+        this.idproduto = idproduto;
+        this.prodnome = prodnome;
+        this.prodpreco = prodpreco;
         this.categoriaProduto = categoriaProduto;
     }
 
@@ -35,27 +35,27 @@ public class Produto {
     }
 
     public Long getId_produto() {
-        return id_produto;
+        return idproduto;
     }
 
-    public void setId_produto(Long id_produto) {
-        this.id_produto = id_produto;
+    public void setId_produto(Long idproduto) {
+        this.idproduto = idproduto;
     }
 
     public String getProd_nome() {
-        return prod_nome;
+        return prodnome;
     }
 
-    public void setProd_nome(String prod_nome) {
-        this.prod_nome = prod_nome;
+    public void setProd_nome(String prodnome) {
+        this.prodnome = prodnome;
     }
 
-    public int getProd_qtd() {
-        return prod_qtd;
+    public double getProd_preco() {
+        return prodpreco;
     }
 
-    public void setProd_qtd(int prod_qtd) {
-        this.prod_qtd = prod_qtd;
+    public void setProd_preco(double prodpreco) {
+        this.prodpreco = prodpreco;
     }
 
     public Categoria getCategoriaProduto() {
@@ -68,6 +68,6 @@ public class Produto {
 
     @Override
     public String toString() {
-        return "Produto [id=" + id_produto + ", nome=" + prod_nome + ", quantidade=" + prod_qtd + "]";
+        return "Produto [id=" + idproduto + ", nome=" + prodnome + ", quantidade=" + prodpreco + "]";
     }
 }
