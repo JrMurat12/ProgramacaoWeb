@@ -20,22 +20,38 @@ public class Aula3Application {
 public CommandLineRunner init(@Autowired CursoRepository cursoRepository,
 @Autowired CategoriaCursoRepository categoriaCursoRepository) {
 	return args -> {
-		cursoRepository.inserir(
+		cursoRepository.save(
 			new Curso((long)0, "teste2", 2050));
-		cursoRepository.inserir(
+		cursoRepository.save(
 			new Curso((long)0, "teste2", 2050));
-		List<Curso> listaCursos = cursoRepository.obterTodos();
+		List<Curso> listaCursos = cursoRepository.findAll();
+		listaCursos.forEach(System.out::println);;
+
 		System.out.println("EXEMPLO OBTER POR NOME...!");
-		listaCursos = cursoRepository.obterPorNome("2");
+		listaCursos = cursoRepository.findByNomeLike("%2");
 		listaCursos.forEach(System.out::println);
 
 		System.out.println("EXEMPLO INSERIR CATEGORIA...!");
 		CategoriaCurso c1 = new CategoriaCurso(0, "TI");
-		categoriaCursoRepository.inserir(c1);
+		categoriaCursoRepository.save(c1);
 
 		System.out.println("EXEMPLO ATUALIZAR CATEGORIA CURSO...!");
 		listaCursos.get(0).setCategoriaCurso(c1);
-		cursoRepository.inserir(listaCursos.get(0));
+		cursoRepository.save(listaCursos.get(0));
+
+		// System.out.println("EXEMPLO LAZY...!");
+		// List<CategoriaCurso> categs = categoriaCursoRepository.findAll();
+		// for (CategoriaCurso ca : categs) {
+		// System.out.println(ca.getId() + " - " + ca.getNome() + "qtde cursos: " + 
+		//ca.getCursos().size());
+		// }
+		// System.out.println(cc.getCursos().size());
+		// CategoriaCurso cc = categoriaCursoRepository.findCategoriaCursoFetchCursos((long) 1);
+
+		System.out.println("EXEMPLO FETCH...!");
+		CategoriaCurso cc = categoriaCursoRepository
+				.findCategoriaCursoFetchCursos((long) 1);
+		System.out.println(cc.getCursos().size());
 
 	};
 }
