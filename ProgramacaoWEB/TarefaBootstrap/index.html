@@ -3,9 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>MuraToys página</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
 <body>
-    
+    <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="img/logo.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                MuraToys
+            </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Detalhes
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Brinquedos</a></li>
+                  <li><a class="dropdown-item" href="#">Blog</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Sobre nós</a></li>
+                </ul>
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+    </nav>
+
+<div class="container">
+    <div class="row mt-3">
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img src="img/batman.png" class="card-img-top" alt="card1">
+                <div class="card-body">
+                  <p class="card-text">Super boneco do Batman de ação por R$ 259,90.</p>
+                  <a href="/detalheBatman.html" class="btn btn-primary">Saiba mais</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img src="img/pista-hotwheels.jpg" class="card-img-top" alt="card1" style="height: 265px;">
+                <div class="card-body">
+                  <p class="card-text">Pista Irada Lava Rápido da HotWheels por incríveis R$ 899,90 em até 10x sem juros.</p>
+                  <a href="/detalheHotwheels.html" class="btn btn-primary">Saiba mais</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img src="img/barbie1.jpg" class="card-img-top" alt="card1" style="height: 285px;">
+                <div class="card-body">
+                  <p class="card-text">Boneca da Barbie Sereia por apenas R$ 79,90</p>
+                  <a href="/detalheBarbie.html" class="btn btn-primary">Saiba mais</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<footer class="text-body-secondary py-5 bg-dark" data-bs-theme="dark">
+  <div class="container">
+    <p class="float-end mb-10">
+      <a href="#">Voltar ao topo</a>
+    </p>
+    <p class="mb-1">Página Oficial da MuraToys paraíso das crianças.</p>
+    <p class="mb-0">Um mundo de brinquedos para sua criança escolher!</p>
+  </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
+
 </html>
