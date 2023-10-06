@@ -21,9 +21,9 @@ public CommandLineRunner init(@Autowired CursoRepository cursoRepository,
 @Autowired CategoriaCursoRepository categoriaCursoRepository) {
 	return args -> {
 		cursoRepository.save(
-			new Curso((long)0, "teste2", 2050));
+			new Curso(null, "teste2", 2050));
 		cursoRepository.save(
-			new Curso((long)0, "teste2", 2050));
+			new Curso(null, "teste2", 2050));
 		List<Curso> listaCursos = cursoRepository.findAll();
 		listaCursos.forEach(System.out::println);;
 
