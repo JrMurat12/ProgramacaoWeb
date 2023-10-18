@@ -9,8 +9,20 @@
             <input [(ngModel)]="num2" type="number" class="form-control">
         </div>
         <div class="mb-3">
+            <label class="form-label">Operação</label>
+            <select [(ngModel)]="operacao">
+                <option value="+">Somar</option>
+                <option value="-">Subtrair</option>
+                <option value="/">Dividir</option>
+                <option value="*">Multiplicar</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <button class="btn btn-primary" (click)="calcular()">Calcular</button>
+        </div>
+        <div class="mb-3">
             <label class="form-label">Resultado</label>
-            <input [(ngModel)]="num1+num2" type="number" class="form-control">
+            <input [(ngModel)]="resultado" type="number" class="form-control">
         </div>
     </div>
 </div>
