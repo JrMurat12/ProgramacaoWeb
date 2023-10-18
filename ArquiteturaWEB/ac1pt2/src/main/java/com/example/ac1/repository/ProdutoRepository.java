@@ -15,19 +15,23 @@ import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {
-    List<Produto> findByprodprecoGreaterThan(Double valor);
-
-    List<Produto> findByprodprecoLessThanEqual(Double valor);
-
-    List<Produto> findByprodnomeStartingWith(String nome);
-
-    @Query("SELECT p FROM Produto p WHERE p.prodpreco > :valor")
-    List<Produto> findProdutosComPrecoMaiorQue(@Param("valor") Double valor);
-
-    @Query("SELECT p FROM Produto p WHERE p.prodpreco <= :valor")
-    List<Produto> findProdutosComPrecoMenorOuIgualA(@Param("valor") Double valor);
-
-    @Query("SELECT p FROM Produto p WHERE p.prodnome LIKE :nome%")
-    List<Produto> findProdutosComNomeQueComecaCom(@Param("nome") String nome);
+    List<Produto> findByNomeLike(String prodnome);
 }
+
+// public interface ProdutoRepository extends JpaRepository<Produto, Long> {
+//     List<Produto> findByprodprecoGreaterThan(Double valor);
+
+//     List<Produto> findByprodprecoLessThanEqual(Double valor);
+
+//     List<Produto> findByprodnomeStartingWith(String nome);
+
+//     @Query("SELECT p FROM Produto p WHERE p.prodpreco > :valor")
+//     List<Produto> findProdutosComPrecoMaiorQue(@Param("valor") Double valor);
+
+//     @Query("SELECT p FROM Produto p WHERE p.prodpreco <= :valor")
+//     List<Produto> findProdutosComPrecoMenorOuIgualA(@Param("valor") Double valor);
+
+//     @Query("SELECT p FROM Produto p WHERE p.prodnome LIKE :nome%")
+//     List<Produto> findProdutosComNomeQueComecaCom(@Param("nome") String nome);
+// }
 

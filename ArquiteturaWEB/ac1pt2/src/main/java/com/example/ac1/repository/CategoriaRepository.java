@@ -15,11 +15,20 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 
-public interface CategoriaRepository extends JpaRepository<Categoria, Long>{
+public interface CategoriaRepository extends
+                    JpaRepository<Categoria, Integer>{
 
-    List<Categoria> findBycatnomeStartingWith(String nome);
-
-    @Query("SELECT c FROM Categoria c LEFT JOIN FETCH c.produtos WHERE c.idcategoria = :categoriaId")
-    Categoria findCategoriaWithProdutosById(@Param("categoriaId") Long categoriaId);
+@Query("select cc from Categoria cc left join fetch cc.produtos p " + 
+                                                "where cc.idcategoria = :id ")
+Categoria findCategoriaFetchCursos(@Param("id") Long id);
 
 }
+
+// public interface CategoriaRepository extends JpaRepository<Categoria, Long>{
+
+//     List<Categoria> findBycatnomeStartingWith(String nome);
+
+//     @Query("SELECT c FROM Categoria c LEFT JOIN FETCH c.produtos WHERE c.idcategoria = :categoriaId")
+//     Categoria findCategoriaWithProdutosById(@Param("categoriaId") Long categoriaId);
+
+// }
