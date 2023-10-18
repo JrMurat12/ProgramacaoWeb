@@ -1,1 +1,33 @@
-<p>apolice-seguro works!</p>
+<div class="row">
+    <div class="col-12">
+        <div class="mb-3">
+            <label class="form-label">Nome</label>
+            <input [(ngModel)]="nome" type="text" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Sexo</label>
+            <select [(ngModel)]="sexo">
+                <option value="masculino">Masculino</option>
+                <option value="feminino">Feminino</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Idade</label>
+            <input [(ngModel)]="idade" type="number" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Valor do Automóvel</label>
+            <input [(ngModel)]="valor" type="number" class="form-control">
+        </div>
+        
+        <div class="mb-3">
+            <button class="btn btn-primary" (click)="calcular()">Calcular</button>
+        </div>
+        <div class="mb-3">
+            <div *ngIf="resultado">
+                <h3>Resultado:</h3>
+                <p>O valor da apólice de seguro para {{ nome }} é R$ {{ resultado.toFixed(2) }}</p>
+            </div>
+        </div>
+    </div>
+</div>
