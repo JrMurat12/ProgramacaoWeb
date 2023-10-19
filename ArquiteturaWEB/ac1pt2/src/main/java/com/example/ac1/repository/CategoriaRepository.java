@@ -18,9 +18,9 @@ import jakarta.transaction.Transactional;
 public interface CategoriaRepository extends
                     JpaRepository<Categoria, Integer>{
 
-@Query("select cc from Categoria cc left join fetch cc.produtos p " + 
-                                                "where cc.idcategoria = :id ")
-Categoria findCategoriaFetchCursos(@Param("id") Long id);
+@Query("select cp from tbl_categorias cp left join fetch cp.produtos p " + 
+                                                "where cp.idcategoria = :idproduto ")
+Categoria findCategoriaFetchProdutosCategoria(@Param("idproduto") Long id);
 
 }
 
