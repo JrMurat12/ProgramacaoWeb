@@ -46,26 +46,26 @@ public CommandLineRunner init(@Autowired ProdutoRepository produtoRepository,
 
 		produtoRepository.saveAll(List.of(produto1, produto2, produto3));
 
-		System.out.println("Produtos com preço maior que 15:");
-		List<Produto> produtosPrecoMaiorQue15 = produtoRepository.findByprodprecoGreaterThan(15.0);
-		produtosPrecoMaiorQue15.forEach(System.out::println);
+		// System.out.println("Produtos com preço maior que 15:");
+		// List<Produto> produtosPrecoMaiorQue15 = produtoRepository.findByprodprecoGreaterThan(15.0);
+		// produtosPrecoMaiorQue15.forEach(System.out::println);
 
-		System.out.println("Produtos com preço menor ou igual a 25:");
-		List<Produto> produtosPrecoMenorOuIgual25 = produtoRepository.findByprodprecoLessThanEqual(25.0);
-		produtosPrecoMenorOuIgual25.forEach(System.out::println);
+		// System.out.println("Produtos com preço menor ou igual a 25:");
+		// List<Produto> produtosPrecoMenorOuIgual25 = produtoRepository.findByprodprecoLessThanEqual(25.0);
+		// produtosPrecoMenorOuIgual25.forEach(System.out::println);
 
-		System.out.println("Produtos que o nome começa com 'Produto':");
-		List<Produto> produtosNomeComecaComProduto = produtoRepository.findByprodnomeStartingWith("Produto");
-		produtosNomeComecaComProduto.forEach(System.out::println);
+		// System.out.println("Produtos que o nome começa com 'Produto':");
+		// List<Produto> produtosNomeComecaComProduto = produtoRepository.findByprodnomeStartingWith("Produto");
+		// produtosNomeComecaComProduto.forEach(System.out::println);
 
-		System.out.println("Categorias que começam com 'Elet':");
-		List<Categoria> categoriasComE = categoriaRepository.findBycatnomeStartingWith("Elet");
-		categoriasComE.forEach(System.out::println);
+		// System.out.println("Categorias que começam com 'Elet':");
+		// List<Categoria> categoriasComE = categoriaRepository.findBycatnomeStartingWith("Elet");
+		// categoriasComE.forEach(System.out::println);
 
-		System.out.println("Categoria com produtos pelo ID:");
-		Categoria categoriaComProdutos = categoriaRepository.findCategoriaWithProdutosById(1L);
-		System.out.println(categoriaComProdutos.getCat_nome());
-		categoriaComProdutos.getProdutos().forEach(produto -> System.out.println("- " + produto.getProd_nome()));
+		// System.out.println("Categoria com produtos pelo ID:");
+		// Categoria categoriaComProdutos = categoriaRepository.findCategoriaWithProdutosById(1L);
+		// System.out.println(categoriaComProdutos.getCat_nome());
+		// categoriaComProdutos.getProdutos().forEach(produto -> System.out.println("- " + produto.getProd_nome()));
 	};
 }
 

@@ -15,13 +15,13 @@ import jakarta.persistence.Table;
 public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idcategoria;
+    private Integer idcategoria;
     @Column(nullable = false)
     private String catnome;
     @OneToMany(mappedBy = "categoriaProduto")
     private List<Produto> produtos;
 
-    public Categoria(Long idcategoria, String catnome, List<Produto> produtos) {
+    public Categoria(Integer idcategoria, String catnome, List<Produto> produtos) {
         this.idcategoria = idcategoria;
         this.catnome = catnome;
         this.produtos = produtos;
@@ -30,11 +30,11 @@ public class Categoria {
     public Categoria() {
     }
 
-    public Long getId_categoria() {
+    public Integer getId_categoria() {
         return idcategoria;
     }
 
-    public void setId_categoria(Long idcategoria) {
+    public void setId_categoria(Integer idcategoria) {
         this.idcategoria = idcategoria;
     }
 
