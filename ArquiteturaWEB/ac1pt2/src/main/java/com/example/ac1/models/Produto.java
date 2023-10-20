@@ -23,11 +23,10 @@ public class Produto {
     @JoinColumn(name = "id_categoria")
     private Categoria categoriaProduto;
 
-    public Produto(Long idproduto, String prodnome, int prodpreco, Categoria categoriaProduto) {
+    public Produto(Long idproduto, String prodnome, int prodpreco) {
         this.idproduto = idproduto;
         this.prodnome = prodnome;
         this.prodpreco = prodpreco;
-        this.categoriaProduto = categoriaProduto;
     }
 
     public Produto() {

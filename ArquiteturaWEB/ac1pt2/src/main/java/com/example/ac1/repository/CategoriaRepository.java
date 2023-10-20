@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.ac1.models.Categoria;
 
-public interface CategoriaRepository extends JpaRepository<Categoria, Long>{
+public interface CategoriaRepository extends JpaRepository<Categoria, Integer>{
 
 }
 

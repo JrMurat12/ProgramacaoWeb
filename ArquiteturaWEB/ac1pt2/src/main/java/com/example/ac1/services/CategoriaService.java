@@ -18,7 +18,7 @@ public class CategoriaService {
         return categoriaRepository.findAll();
     }
 
-    public Optional<Categoria> obterCategoriaPorId(Long id) {
+    public Optional<Categoria> obterCategoriaPorId(Integer id) {
         return categoriaRepository.findById(id);
     }
 
@@ -30,7 +30,7 @@ public class CategoriaService {
         return categoriaRepository.save(categoria);
     }
 
-    public void excluirCategoria(Long id) {
+    public void excluirCategoria(Integer id) {
         categoriaRepository.deleteById(id);
     }
 }

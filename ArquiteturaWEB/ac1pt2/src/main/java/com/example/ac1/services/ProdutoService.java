@@ -1,36 +1,20 @@
 package com.example.ac1.services;
 
 import java.util.List;
-import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
+import com.example.ac1.dtos.DadosProdutoDTO;
+import com.example.ac1.dtos.ProdutoDTO;
 import com.example.ac1.models.Produto;
-import com.example.ac1.repository.ProdutoRepository;
 
-@Service
-public class ProdutoService {
-    @Autowired
-    private ProdutoRepository produtoRepository;
+public interface ProdutoService {
+    Produto salvar(ProdutoDTO produtoDTO);
 
-    public List<Produto> obterTodos() {
-        return produtoRepository.findAll();
-    }
+    List<ProdutoDTO> listarTodos();
 
-    public Optional<Produto> obterPorId(Long id) {
-        return produtoRepository.findById(id);
-    }
+    DadosProdutoDTO obterPorId(Long id);
 
-    public Produto inserir(Produto produto) {
-        return produtoRepository.save(produto);
-    }
+    void excluir(Long id);
 
-    public Produto editar(Produto produto) {
-        return produtoRepository.save(produto);
-    }
+    void editar(Long id, ProdutoDTO dto);
 
-    public void excluir(Long id) {
-        produtoRepository.deleteById(id);
-    }
 }
