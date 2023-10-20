@@ -9,7 +9,7 @@ import com.example.ac2.models.Professor;
 public interface ProfessorService {
     Professor salvar(ProfessorDTO professorDTO);
 
-    // List<ProfessorDTO> listarTodos();
+    List<ProfessorDTO> listarTodos();
 
     // DadosProfessorDTO obterPorId(Integer id);
 

@@ -1,10 +1,13 @@
 package com.example.ac2.services;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import com.example.ac2.dtos.CursoDTO;
 import com.example.ac2.dtos.ProfessorDTO;
 import com.example.ac2.exceptions.RegraNegocioException;
 import com.example.ac2.models.Curso;
@@ -47,5 +50,31 @@ public class ProfessorServiceImpl implements ProfessorService {
         p.setCursos(new ArrayList<>());
         }
         return professorRepository.save(p);
+    }
+
+    public List<ProfessorDTO> listarTodos() {
+        List<ProfessorDTO> professores = professorRepository.findAll().stream().map(
+                        (Professor p) -> {
+                            ProfessorDTO professorDTO = ProfessorDTO.builder()
+                                                .id(p.getId())
+                                                .nome(p.getNome())
+                                                .cpf(p.getCpf())
+                                                .rg(p.getRg())
+                                                .endereco(p.getEndereco())
+                                                .celular(p.getCelular())
+                                                .build();
+
+                                                if (p.getCursos() != null) {
+                                                    List<Integer> cursoIds = p.getCursos().stream()
+                                                            .map(curso -> curso.getId())
+                                                            .collect(Collectors.toList());
+                                                    professorDTO.setCursoProfessorId(cursoIds);
+                                                } else {
+                                                    professorDTO.setCursoProfessorId(Collections.emptyList());
+                                                }
+
+                                                return professorDTO;             
+                        }).collect(Collectors.toList());
+        return professores;
     }
 }
