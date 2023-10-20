@@ -31,9 +31,9 @@ public CommandLineRunner init(@Autowired ProdutoRepository produtoRepository,
 			// // listaProdutos = produtoRepository.findById((long) 0);
 			// listaProdutos.forEach(System.out::println);
 
-			// System.out.println("** Exemplo inserir categoria **");
-			// Categoria c1 = new Categoria(null, "TI");
-			// categoriaRepository.save(c1);
+			System.out.println("** Exemplo inserir categoria **");
+			Categoria c1 = new Categoria(null, "TI");
+			categoriaRepository.save(c1);
 
 			// System.out.println("** Exemplo atualiza categ. produto **");
 			// listaProdutos.get(0).setCategoriaProduto(c1);

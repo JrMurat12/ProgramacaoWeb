@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.example.ac1.models.Produto;
 
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {
-    List<Produto> findByNomeLike(Long id);
+
 }
 
 // public interface ProdutoRepository extends JpaRepository<Produto, Long> {
