@@ -20,7 +20,7 @@ public class CategoriaController {
     }
 
     @GetMapping("/{id}")
-    public Categoria obterCategoriaPorId(@PathVariable Integer id) {
+    public Categoria obterCategoriaPorId(@PathVariable Long id) {
         return categoriaService.obterCategoriaPorId(id).orElse(null);
     }
 
@@ -35,7 +35,7 @@ public class CategoriaController {
     }
 
     @DeleteMapping("/{id}")
-    public void excluirCategoria(@PathVariable Integer id) {
+    public void excluirCategoria(@PathVariable Long id) {
         categoriaService.excluirCategoria(id);
     }
 }

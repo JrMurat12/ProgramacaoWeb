@@ -18,12 +18,12 @@ public class Produto {
     @Column(length = 200, nullable = false)
     private String prodnome;
     @Column(nullable = false)
-    private double prodpreco;
+    private int prodpreco;
     @ManyToOne
     @JoinColumn(name = "id_categoria")
     private Categoria categoriaProduto;
 
-    public Produto(Long idproduto, String prodnome, double prodpreco, Categoria categoriaProduto) {
+    public Produto(Long idproduto, String prodnome, int prodpreco, Categoria categoriaProduto) {
         this.idproduto = idproduto;
         this.prodnome = prodnome;
         this.prodpreco = prodpreco;
@@ -50,11 +50,11 @@ public class Produto {
         this.prodnome = prodnome;
     }
 
-    public double getProd_preco() {
+    public int getProd_preco() {
         return prodpreco;
     }
 
-    public void setProd_preco(double prodpreco) {
+    public void setProd_preco(int prodpreco) {
         this.prodpreco = prodpreco;
     }
 

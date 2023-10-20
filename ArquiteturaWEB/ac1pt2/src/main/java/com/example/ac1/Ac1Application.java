@@ -20,31 +20,31 @@ public class Ac1Application {
 public CommandLineRunner init(@Autowired ProdutoRepository produtoRepository,
 @Autowired CategoriaRepository categoriaRepository) {
 	return args -> {
-		Categoria categoria1 = new Categoria();
-		categoria1.setCat_nome("Eletrônicos");
+		// Categoria categoria1 = new Categoria();
+		// categoria1.setCat_nome("Eletrônicos");
 
-		Categoria categoria2 = new Categoria();
-		categoria2.setCat_nome("Roupas");
+		// Categoria categoria2 = new Categoria();
+		// categoria2.setCat_nome("Roupas");
 
-		categoriaRepository.save(categoria1);
-		categoriaRepository.save(categoria2);
+		// categoriaRepository.save(categoria1);
+		// categoriaRepository.save(categoria2);
 
-		Produto produto1 = new Produto();
-		produto1.setProd_nome("Produto 1");
-		produto1.setProd_preco(10.0);
-		produto1.setCategoriaProduto(categoria1);
+		// Produto produto1 = new Produto();
+		// produto1.setProd_nome("Produto 1");
+		// produto1.setProd_preco(10);
+		// produto1.setCategoriaProduto(categoria1);
 
-		Produto produto2 = new Produto();
-		produto2.setProd_nome("Produto 2");
-		produto2.setProd_preco(20.0);
-		produto2.setCategoriaProduto(categoria1);
+		// Produto produto2 = new Produto();
+		// produto2.setProd_nome("Produto 2");
+		// produto2.setProd_preco(20);
+		// produto2.setCategoriaProduto(categoria1);
 
-		Produto produto3 = new Produto();
-		produto3.setProd_nome("Teste 3");
-		produto3.setProd_preco(30.0);
-		produto3.setCategoriaProduto(categoria2);
+		// Produto produto3 = new Produto();
+		// produto3.setProd_nome("Teste 3");
+		// produto3.setProd_preco(30);
+		// produto3.setCategoriaProduto(categoria2);
 
-		produtoRepository.saveAll(List.of(produto1, produto2, produto3));
+		// produtoRepository.saveAll(List.of(produto1, produto2, produto3));
 
 		// System.out.println("Produtos com preço maior que 15:");
 		// List<Produto> produtosPrecoMaiorQue15 = produtoRepository.findByprodprecoGreaterThan(15.0);
