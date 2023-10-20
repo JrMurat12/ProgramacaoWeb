@@ -18,7 +18,7 @@ import jakarta.persistence.OneToMany;
 public class Professor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     private String nome;
     private String cpf;
     private String rg;
@@ -36,27 +36,24 @@ public class Professor {
     @OneToMany(mappedBy = "professor")
     private List<Agenda> agendas = new ArrayList<>();
 
-    public Professor(Long id, String nome, String cpf, String rg, String endereco, String celular, Set<Curso> cursos,
-            List<Agenda> agendas) {
+    public Professor(Integer id, String nome, String cpf, String rg, String endereco, String celular) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
         this.rg = rg;
         this.endereco = endereco;
         this.celular = celular;
-        this.cursos = cursos;
-        this.agendas = agendas;
     }
 
     public Professor() {
 
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

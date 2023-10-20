@@ -31,7 +31,7 @@ public class Agenda {
     private Curso curso;
 
     public Agenda(Long id, LocalDate dataInicio, LocalDate dataFim, String horarioInicio, String horarioFim, String cidade,
-            String estado, String cep, Professor professor, Curso curso) {
+            String estado, String cep) {
         this.id = id;
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
@@ -40,8 +40,6 @@ public class Agenda {
         this.cidade = cidade;
         this.estado = estado;
         this.cep = cep;
-        this.professor = professor;
-        this.curso = curso;
     }
 
     public Agenda() {
