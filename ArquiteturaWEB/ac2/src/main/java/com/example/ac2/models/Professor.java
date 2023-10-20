@@ -31,7 +31,7 @@ public class Professor {
         joinColumns = @JoinColumn(name = "professor_id"),
         inverseJoinColumns = @JoinColumn(name = "curso_id")
     )
-    private Set<Curso> cursos = new HashSet<>();
+    private List<Curso> cursos = new ArrayList<>();
 
     @OneToMany(mappedBy = "professor")
     private List<Agenda> agendas = new ArrayList<>();
@@ -97,11 +97,11 @@ public class Professor {
         this.celular = celular;
     }
 
-    public Set<Curso> getCursos() {
+    public List<Curso> getCursos() {
         return cursos;
     }
 
-    public void setCursos(Set<Curso> cursos) {
+    public void setCursos(List<Curso> cursos) {
         this.cursos = cursos;
     }
 

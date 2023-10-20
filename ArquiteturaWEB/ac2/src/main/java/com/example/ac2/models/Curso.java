@@ -23,7 +23,7 @@ public class Curso {
     private String ementa;
 
     @ManyToMany(mappedBy = "cursos")
-    private Set<Professor> professores = new HashSet<>();
+    private List<Professor> professores = new ArrayList<>();
 
     @OneToMany(mappedBy = "curso")
     private List<Agenda> agendas = new ArrayList<>();
@@ -80,11 +80,11 @@ public class Curso {
         this.ementa = ementa;
     }
 
-    public Set<Professor> getProfessores() {
+    public List<Professor> getProfessores() {
         return professores;
     }
 
-    public void setProfessores(Set<Professor> professores) {
+    public void setProfessores(List<Professor> professores) {
         this.professores = professores;
     }
 
