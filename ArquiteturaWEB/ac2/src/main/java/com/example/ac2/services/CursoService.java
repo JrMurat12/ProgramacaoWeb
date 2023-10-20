@@ -16,6 +16,7 @@ import com.example.ac2.repository.ProfessorRepository;
 public class CursoService {
     @Autowired
     private CursoRepository cursoRepository;
+    @Autowired
     private ProfessorRepository professorRepository;
 
     public List<Curso> getAllCursos() {
