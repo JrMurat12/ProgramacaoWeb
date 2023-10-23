@@ -12,19 +12,16 @@ import com.example.ac2.dtos.ProfessorDTO;
 import com.example.ac2.models.Professor;
 import com.example.ac2.repository.ProfessorRepository;
 
-@Service
-public class ProfessorService {
-    
-    private final ProfessorRepository professorRepository;
+public interface ProfessorService {
+    Professor salvar(Professor professor);
 
-    @Autowired
-    public ProfessorService(ProfessorRepository professorRepository) {
-        this.professorRepository = professorRepository;
-    }
+    List<Professor> listarTodos();
 
-    public List<Professor> getAllProfessors() {
-        return professorRepository.findAll();
-    }
+    Professor obterPorId(Integer id);
+
+    void excluir(Integer id);
+
+    Professor editar(Integer id, Professor professor);
 
     // public List<ProfessorDTO> listarPorCategorias(List<Integer> cursoProfessorId) {
     // List<ProfessorDTO> professores = professorRepository.findAll().stream()
@@ -43,37 +40,5 @@ public class ProfessorService {
     //         .collect(Collectors.toList());
     // return professores;
     // }
-
-
-    public Optional<Professor> getProfessorById(Integer id) {
-        return professorRepository.findById(id);
-    }
-
-    public Professor saveProfessor(Professor professor) {
-        return professorRepository.save(professor);
-    }
-
-    public Professor updateProfessor(Integer id, Professor professor) {
-        if (professorRepository.existsById(id)) {
-            professor.setId(id);
-            return professorRepository.save(professor);
-        } else {
-            return null;
-        }
-    }
-
-    public void deleteProfessor(Integer id) {
-        professorRepository.deleteById(id);
-    }
-    
-    // Professor salvar(ProfessorDTO professorDTO);
-
-    // List<ProfessorDTO> listarTodos();
-
-    // DadosProfessorDTO obterPorId(Integer id);
-
-    // void excluir(Integer id);
-
-    // void editar(Integer id, ProfessorDTO dto);
 }
 

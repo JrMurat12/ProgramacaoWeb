@@ -24,6 +24,7 @@ public class Professor {
     private String rg;
     private String endereco;
     private String celular;
+    private String especializacao;
 
     @ManyToMany
     @JoinTable(
@@ -36,13 +37,14 @@ public class Professor {
     @OneToMany(mappedBy = "professor")
     private List<Agenda> agendas = new ArrayList<>();
 
-    public Professor(Integer id, String nome, String cpf, String rg, String endereco, String celular) {
+    public Professor(Integer id, String nome, String cpf, String rg, String endereco, String celular, String especializacao) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
         this.rg = rg;
         this.endereco = endereco;
         this.celular = celular;
+        this.especializacao = especializacao;
     }
 
     public Professor() {
@@ -95,6 +97,14 @@ public class Professor {
 
     public void setCelular(String celular) {
         this.celular = celular;
+    }
+
+    public String getEspecializacao() {
+        return especializacao;
+    }
+
+    public void setEspecializacao(String especializacao) {
+        this.especializacao = especializacao;
     }
 
     public List<Curso> getCursos() {

@@ -11,49 +11,16 @@ import com.example.ac2.dtos.DadosCursoDTO;
 import com.example.ac2.models.Curso;
 import com.example.ac2.repository.CursoRepository;
 
-@Service
-public class CursoService {
-    
-    private final CursoRepository cursoRepository;
+public interface CursoService {
+    Curso salvar(Curso curso);
 
-    @Autowired
-    public CursoService(CursoRepository cursoRepository) {
-        this.cursoRepository = cursoRepository;
-    }
+    List<Curso> listarTodos();
 
-    public List<Curso> getAllCursos() {
-        return cursoRepository.findAll();
-    }
+    Curso obterPorId(Integer id);
 
-    public Optional<Curso> getCursoById(Integer id) {
-        return cursoRepository.findById(id);
-    }
+    void excluir(Integer id);
 
-    public Curso saveCurso(Curso curso) {
-        return cursoRepository.save(curso);
-    }
-
-    public Curso updateCurso(Integer id, Curso curso) {
-        if (cursoRepository.existsById(id)) {
-            curso.setId(id);
-            return cursoRepository.save(curso);
-        } else {
-            return null;
-        }
-    }
-
-    public void deleteCurso(Integer id) {
-        cursoRepository.deleteById(id);
-    }
-    // Curso salvar(CursoDTO cursoDTO);
-
-    // List<CursoDTO> listarTodos();
-
-    // DadosCursoDTO obterPorId(Integer id);
-
-    // void excluir(Integer id);
-
-    // void editar(Integer id, CursoDTO dto);
+    Curso editar(Integer id, Curso curso);
 }
 
 

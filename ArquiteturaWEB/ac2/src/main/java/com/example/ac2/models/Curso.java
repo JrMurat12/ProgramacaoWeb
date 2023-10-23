@@ -21,6 +21,7 @@ public class Curso {
     private int cargaHoraria;
     private String objetivos;
     private String ementa;
+    private String especializacao;
 
     @ManyToMany(mappedBy = "cursos")
     private List<Professor> professores = new ArrayList<>();
@@ -28,12 +29,13 @@ public class Curso {
     @OneToMany(mappedBy = "curso")
     private List<Agenda> agendas = new ArrayList<>();
 
-    public Curso(Integer id, String descricao, int cargaHoraria, String objetivos, String ementa) {
+    public Curso(Integer id, String descricao, int cargaHoraria, String objetivos, String ementa, String especializacao) {
         this.id = id;
         this.descricao = descricao;
         this.cargaHoraria = cargaHoraria;
         this.objetivos = objetivos;
         this.ementa = ementa;
+        this.especializacao = especializacao;
     }
 
     public Curso() {
@@ -78,6 +80,14 @@ public class Curso {
 
     public void setEmenta(String ementa) {
         this.ementa = ementa;
+    }
+
+    public String getEspecializacao() {
+        return especializacao;
+    }
+
+    public void setEspecializacao(String especializacao) {
+        this.especializacao = especializacao;
     }
 
     public List<Professor> getProfessores() {

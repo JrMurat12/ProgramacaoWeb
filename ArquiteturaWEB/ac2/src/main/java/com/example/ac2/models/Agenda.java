@@ -1,6 +1,9 @@
 package com.example.ac2.models;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
+
+import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters.LocalTimeConverter;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,8 +19,8 @@ public class Agenda {
     private Long id;
     private LocalDate dataInicio;
     private LocalDate dataFim;
-    private String horarioInicio;
-    private String horarioFim;
+    private LocalTime horarioInicio;
+    private LocalTime horarioFim;
     private String cidade;
     private String estado;
     private String cep;
@@ -30,7 +33,7 @@ public class Agenda {
     @JoinColumn(name = "curso_id")
     private Curso curso;
 
-    public Agenda(Long id, LocalDate dataInicio, LocalDate dataFim, String horarioInicio, String horarioFim, String cidade,
+    public Agenda(Long id, LocalDate dataInicio, LocalDate dataFim, LocalTime horarioInicio, LocalTime horarioFim, String cidade,
             String estado, String cep) {
         this.id = id;
         this.dataInicio = dataInicio;
@@ -70,19 +73,19 @@ public class Agenda {
         this.dataFim = dataFim;
     }
 
-    public String getHorarioInicio() {
+    public LocalTime getHorarioInicio() {
         return horarioInicio;
     }
 
-    public void setHorarioInicio(String horarioInicio) {
+    public void setHorarioInicio(LocalTime horarioInicio) {
         this.horarioInicio = horarioInicio;
     }
 
-    public String getHorarioFim() {
+    public LocalTime getHorarioFim() {
         return horarioFim;
     }
 
-    public void setHorarioFim(String horarioFim) {
+    public void setHorarioFim(LocalTime horarioFim) {
         this.horarioFim = horarioFim;
     }
 
