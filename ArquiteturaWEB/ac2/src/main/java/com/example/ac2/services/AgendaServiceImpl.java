@@ -19,13 +19,13 @@ public class AgendaServiceImpl implements AgendaService {
 
     @Override
     public Agenda salvar(Agenda agenda) {
-        Long idDoAgendamentoExistente = agenda.getId();
+        Long idAgendaExistente = agenda.getId();
 
-        Agenda agendamentoExistente = agendaRepository.findById(idDoAgendamentoExistente).orElse(null);
+        Agenda agendaExistente = agendaRepository.findById(idAgendaExistente).orElse(null);
 
-        if (agendamentoExistente != null) {
+        if (agendaExistente != null) {
 
-            if (isProfessorDisponivel(agenda) && !hasConflitoDeHorario(agendamentoExistente, agenda)) {
+            if (isProfessorDisponivel(agenda) && !hasConflitoDeHorario(agendaExistente, agenda)) {
                 return agendaRepository.save(agenda);
             } else {
                 throw new RegraNegocioException("A agenda não podê ser atualizada!");
@@ -62,10 +62,10 @@ public class AgendaServiceImpl implements AgendaService {
 
     private boolean isProfessorDisponivel(Agenda agenda){
 
-        List<Agenda> agendamentosDoProfessor = agendaRepository.findByProfessor(agenda.getProfessor());
+        List<Agenda> agendaProfessor = agendaRepository.findByProfessor(agenda.getProfessor());
 
-        for (Agenda agendamentoExistente : agendamentosDoProfessor) {
-            if (hasConflitoDeHorario(agendamentoExistente, agenda)) {
+        for (Agenda agendaExistente : agendaProfessor) {
+            if (hasConflitoDeHorario(agendaExistente, agenda)) {
                 return false;
             }
         }
@@ -76,10 +76,10 @@ public class AgendaServiceImpl implements AgendaService {
         return agenda.getProfessor().getEspecializacao().contains(especializacaoNecessaria);
     }
 
-    private boolean hasConflitoDeHorario(Agenda agendamentoExistente, Agenda novoAgendamento) {
-        return agendamentoExistente.getDataInicio().isBefore(novoAgendamento.getDataFim())
-                && agendamentoExistente.getDataFim().isAfter(novoAgendamento.getDataInicio())
-                && agendamentoExistente.getHorarioInicio().isBefore(novoAgendamento.getHorarioFim())
-                && agendamentoExistente.getHorarioFim().isAfter(novoAgendamento.getHorarioInicio());
+    private boolean hasConflitoDeHorario(Agenda agendaExistente, Agenda novoAgendamento) {
+        return agendaExistente.getDataInicio().isBefore(novoAgendamento.getDataFim())
+                && agendaExistente.getDataFim().isAfter(novoAgendamento.getDataInicio())
+                && agendaExistente.getHorarioInicio().isBefore(novoAgendamento.getHorarioFim())
+                && agendaExistente.getHorarioFim().isAfter(novoAgendamento.getHorarioInicio());
     }
 }
