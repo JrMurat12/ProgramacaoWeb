@@ -1,15 +1,54 @@
 package com.example.ac2.services;
 
 import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.ac2.dtos.DadosProfessorDTO;
 import com.example.ac2.dtos.ProfessorDTO;
 import com.example.ac2.models.Professor;
+import com.example.ac2.repository.ProfessorRepository;
 
-public interface ProfessorService {
-    Professor salvar(ProfessorDTO professorDTO);
+@Service
+public class ProfessorService {
+    
+    private final ProfessorRepository professorRepository;
 
-    List<ProfessorDTO> listarTodos();
+    @Autowired
+    public ProfessorService(ProfessorRepository professorRepository) {
+        this.professorRepository = professorRepository;
+    }
+
+    public List<Professor> getAllProfessors() {
+        return professorRepository.findAll();
+    }
+
+    public Optional<Professor> getProfessorById(Integer id) {
+        return professorRepository.findById(id);
+    }
+
+    public Professor saveProfessor(Professor professor) {
+        return professorRepository.save(professor);
+    }
+
+    public Professor updateProfessor(Integer id, Professor professor) {
+        if (professorRepository.existsById(id)) {
+            professor.setId(id);
+            return professorRepository.save(professor);
+        } else {
+            return null;
+        }
+    }
+
+    public void deleteProfessor(Integer id) {
+        professorRepository.deleteById(id);
+    }
+    
+    // Professor salvar(ProfessorDTO professorDTO);
+
+    // List<ProfessorDTO> listarTodos();
 
     // DadosProfessorDTO obterPorId(Integer id);
 
