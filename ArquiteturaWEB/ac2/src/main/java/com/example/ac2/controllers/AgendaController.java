@@ -19,36 +19,35 @@ import com.example.ac2.services.AgendaService;
 @RestController
 @RequestMapping("/api/agenda")
 public class AgendaController {
-        private final AgendaService agendaService;
+    private final AgendaService agendaService;
 
-    @Autowired
     public AgendaController(AgendaService agendaService) {
         this.agendaService = agendaService;
     }
 
     @GetMapping
-    public List<Agenda> getAllAgendas() {
-        return agendaService.getAllAgendas();
+    public List<Agenda> listarTodasAgendas() {
+        return agendaService.listarTodos();
     }
 
     @GetMapping("/{id}")
-    public Optional<Agenda> getAgendaById(@PathVariable Long id) {
-        return agendaService.getAgendaById(id);
+    public Agenda listarAgendaPorID(@PathVariable Long id) {
+        return agendaService.obterPorId(id);
     }
 
     @PostMapping
-    public Agenda saveAgenda(@RequestBody Agenda agenda) {
-        return agendaService.saveAgenda(agenda);
+    public Agenda salvarAgenda(@RequestBody Agenda agenda) {
+        return agendaService.salvar(agenda);
     }
 
     @PutMapping("/{id}")
-    public Agenda updateAgenda(@PathVariable Long id, @RequestBody Agenda agenda) {
-        return agendaService.updateAgenda(id, agenda);
+    public Agenda atualizarAgenda(@PathVariable Long id, @RequestBody Agenda agenda) {
+        return agendaService.editar(id, agenda);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteAgenda(@PathVariable Long id) {
-        agendaService.deleteAgenda(id);
+    public void deletarAgenda(@PathVariable Long id) {
+        agendaService.excluir(id);
     }
 }
 

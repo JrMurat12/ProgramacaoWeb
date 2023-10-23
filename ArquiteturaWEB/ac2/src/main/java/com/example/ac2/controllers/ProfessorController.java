@@ -24,34 +24,33 @@ import com.example.ac2.services.ProfessorService;
 public class ProfessorController {
     private final ProfessorService professorService;
 
-    @Autowired
     public ProfessorController(ProfessorService professorService) {
         this.professorService = professorService;
     }
 
     @GetMapping
-    public List<Professor> getAllProfessors() {
-        return professorService.getAllProfessors();
+    public List<Professor> listarTodosProfessores() {
+        return professorService.listarTodos();
     }
 
     @GetMapping("/{id}")
-    public Optional<Professor> getProfessorById(@PathVariable Integer id) {
-        return professorService.getProfessorById(id);
+    public Professor listarProfessorPorId(@PathVariable Integer id) {
+        return professorService.obterPorId(id);
     }
 
     @PostMapping
-    public Professor saveProfessor(@RequestBody Professor professor) {
-        return professorService.saveProfessor(professor);
+    public Professor criarProfessor(@RequestBody Professor professor) {
+        return professorService.salvar(professor);
     }
 
     @PutMapping("/{id}")
-    public Professor updateProfessor(@PathVariable Integer id, @RequestBody Professor professor) {
-        return professorService.updateProfessor(id, professor);
+    public Professor atualizarProfessor(@PathVariable Integer id, @RequestBody Professor professor) {
+        return professorService.editar(id, professor);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteProfessor(@PathVariable Integer id) {
-        professorService.deleteProfessor(id);
+    public void deletarProfessor(@PathVariable Integer id) {
+        professorService.excluir(id);
     }
 }
 

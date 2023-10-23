@@ -19,37 +19,35 @@ import com.example.ac2.services.CursoService;
 @RestController
 @RequestMapping("/api/curso")
 public class CursoController {
-    
     private final CursoService cursoService;
 
-    @Autowired
     public CursoController(CursoService cursoService) {
         this.cursoService = cursoService;
     }
 
     @GetMapping
-    public List<Curso> getAllCursos() {
-        return cursoService.getAllCursos();
+    public List<Curso> listarTodosCursos() {
+        return cursoService.listarTodos();
     }
 
     @GetMapping("/{id}")
-    public Optional<Curso> getCursoById(@PathVariable Integer id) {
-        return cursoService.getCursoById(id);
+    public Curso listarCursoPorID(@PathVariable Integer id) {
+        return cursoService.obterPorId(id);
     }
 
     @PostMapping
-    public Curso saveCurso(@RequestBody Curso curso) {
-        return cursoService.saveCurso(curso);
+    public Curso criarCurso(@RequestBody Curso curso) {
+        return cursoService.salvar(curso);
     }
 
     @PutMapping("/{id}")
-    public Curso updateCurso(@PathVariable Integer id, @RequestBody Curso curso) {
-        return cursoService.updateCurso(id, curso);
+    public Curso atualizarCurso(@PathVariable Integer id, @RequestBody Curso curso) {
+        return cursoService.editar(id, curso);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteCurso(@PathVariable Integer id) {
-        cursoService.deleteCurso(id);
+    public void deletarCurso(@PathVariable Integer id) {
+        cursoService.excluir(id);
     }
 }
 
