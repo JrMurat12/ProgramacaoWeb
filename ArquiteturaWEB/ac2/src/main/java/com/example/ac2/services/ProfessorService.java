@@ -2,6 +2,7 @@ package com.example.ac2.services;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,25 @@ public class ProfessorService {
     public List<Professor> getAllProfessors() {
         return professorRepository.findAll();
     }
+
+    // public List<ProfessorDTO> listarPorCategorias(List<Integer> cursoProfessorId) {
+    // List<ProfessorDTO> professores = professorRepository.findAll().stream()
+    //         .filter(p -> cursoProfessorId.contains(
+    //                 p.getCursos() == null ? 0 : p.getCursos().getId()))
+    //         .map((Professor p) -> {
+    //             return ProfessorDTO.builder()
+    //                     .id(p.getId())
+    //                     .nome(p.getNome())
+    //                     .rg(p.getRg())
+    //                     .cursoProfessorId(
+    //                             p.getCursos() == null ? 0
+    //                                     : p.getCursos())
+    //                     .build();
+    //         })
+    //         .collect(Collectors.toList());
+    // return professores;
+// }
+
 
     public Optional<Professor> getProfessorById(Integer id) {
         return professorRepository.findById(id);
