@@ -17,7 +17,11 @@ export class TemplateDrivenComponent implements OnInit {
   }
 
   onSubmit(form: any){
-
+    if(form.valid){
+      alert("Formulário OK!")
+    } else {
+      alert("Preencha todos os campos corretamente!");
+    }
   }
   
 }

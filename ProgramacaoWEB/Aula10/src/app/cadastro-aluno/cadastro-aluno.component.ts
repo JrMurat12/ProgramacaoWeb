@@ -16,20 +16,30 @@ export class CadastroAlunoComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  cadastrarAluno() {
-    const novoAluno = {
-      ra: this.ra,
-      nome: this.nome,
-      email: this.email,
-      celular: this.celular
-    };
+  cadastrarAluno(form: any) {
+    if(form.valid){
+      alert("Formulário OK!")
+      const novoAluno = {
+        ra: this.ra,
+        nome: this.nome,
+        email: this.email,
+        celular: this.celular
+      };
+  
+      this.alunos.push(novoAluno);
+  
+      this.ra = '';
+      this.nome = '';
+      this.email = '';
+      this.celular = '';
+    } else {
+      alert("Preencha todos os campos corretamente!");
+    }
 
-    this.alunos.push(novoAluno);
+  }
 
-    this.ra = '';
-    this.nome = '';
-    this.email = '';
-    this.celular = '';
+  onSubmit(form: any){
+
   }
 
 }
