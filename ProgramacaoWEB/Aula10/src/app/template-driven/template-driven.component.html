@@ -9,12 +9,12 @@
     </div>
     <div class="mb-3">
         <label for="email" class="form-label">Email</label>
-        <input type="text" class="form-control" name="email" [(ngModel)]="email" required>
+        <input type="text" class="form-control" name="email" [(ngModel)]="email" required email>
         <div *ngIf="form.submitted && form.controls['email'].errors" class="text-danger">
             <div *ngIf="form.controls['email'].errors['required']">E-mail obrigatório</div>
         </div>
         <div *ngIf="form.submitted && form.controls['email'].errors" class="text-danger">
-            <div *ngIf="form.controls['email'].errors['required']">E-mail fora do padrão</div>
+            <div *ngIf="form.controls['email'].errors['email']">E-mail fora do padrão</div>
         </div>
     </div>
     <div class="mb-3">
