@@ -18,13 +18,12 @@ import jakarta.persistence.OneToMany;
 public class Professor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private String nome;
     private String cpf;
     private String rg;
     private String endereco;
     private String celular;
-    private String especializacao;
 
     @ManyToMany
     @JoinTable(
@@ -32,30 +31,29 @@ public class Professor {
         joinColumns = @JoinColumn(name = "professor_id"),
         inverseJoinColumns = @JoinColumn(name = "curso_id")
     )
-    private List<Curso> cursos = new ArrayList<>();
+    private Set<Curso> cursos = new HashSet<>();
 
     @OneToMany(mappedBy = "professor")
     private List<Agenda> agendas = new ArrayList<>();
 
-    public Professor(Integer id, String nome, String cpf, String rg, String endereco, String celular, String especializacao) {
+    public Professor(Long id, String nome, String cpf, String rg, String endereco, String celular) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
         this.rg = rg;
         this.endereco = endereco;
         this.celular = celular;
-        this.especializacao = especializacao;
     }
 
     public Professor() {
 
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -99,20 +97,22 @@ public class Professor {
         this.celular = celular;
     }
 
-    public String getEspecializacao() {
-        return especializacao;
-    }
-
-    public void setEspecializacao(String especializacao) {
-        this.especializacao = especializacao;
-    }
-
-    public List<Curso> getCursos() {
+    public Set<Curso> getCursos() {
         return cursos;
     }
 
-    public void setCursos(List<Curso> cursos) {
+    public void setCursos(Set<Curso> cursos) {
         this.cursos = cursos;
+    }
+
+    public void addCurso(Curso curso) {
+        cursos.add(curso);
+        curso.getProfessores().add(this); 
+    }
+
+    public void removeCurso(Curso curso) {
+        cursos.remove(curso);
+        curso.getProfessores().remove(this); 
     }
 
     public List<Agenda> getAgendas() {

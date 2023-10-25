@@ -22,35 +22,44 @@ import com.example.ac2.services.ProfessorService;
 @RestController
 @RequestMapping("/api/professor")
 public class ProfessorController {
-    private final ProfessorService professorService;
-
-    public ProfessorController(ProfessorService professorService) {
-        this.professorService = professorService;
-    }
+    @Autowired
+    private ProfessorService professorService;
 
     @GetMapping
-    public List<Professor> listarTodosProfessores() {
-        return professorService.listarTodos();
+    public List<Professor> getAllProfessores() {
+        return professorService.getAllProfessores();
     }
 
     @GetMapping("/{id}")
-    public Professor listarProfessorPorId(@PathVariable Integer id) {
-        return professorService.obterPorId(id);
+    public Professor getProfessorById(@PathVariable Long id) {
+        return professorService.getProfessorById(id);
     }
 
     @PostMapping
-    public Professor criarProfessor(@RequestBody Professor professor) {
-        return professorService.salvar(professor);
+    public Professor createProfessor(@RequestBody Professor professor) {
+        return professorService.createProfessor(professor);
     }
 
     @PutMapping("/{id}")
-    public Professor atualizarProfessor(@PathVariable Integer id, @RequestBody Professor professor) {
-        return professorService.editar(id, professor);
+    public Professor updateProfessor(@PathVariable Long id, @RequestBody Professor professor) {
+        return professorService.updateProfessor(id, professor);
     }
 
     @DeleteMapping("/{id}")
-    public void deletarProfessor(@PathVariable Integer id) {
-        professorService.excluir(id);
+    public void deleteProfessor(@PathVariable Long id) {
+        professorService.deleteProfessor(id);
+    }
+    
+    @PostMapping("/{professorId}/cursos/{cursoId}")
+    public Professor addCursoToProfessor(
+            @PathVariable Long professorId, @PathVariable Long cursoId) {
+        return professorService.addCursoToProfessor(professorId, cursoId);
+    }
+    
+    @DeleteMapping("/{professorId}/cursos/{cursoId}")
+    public Professor removeCursoFromProfessor(
+            @PathVariable Long professorId, @PathVariable Long cursoId) {
+        return professorService.removeCursoFromProfessor(professorId, cursoId);
     }
 }
 

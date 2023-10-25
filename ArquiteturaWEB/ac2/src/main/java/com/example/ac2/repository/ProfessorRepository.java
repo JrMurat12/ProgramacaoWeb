@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.example.ac2.models.Professor;
 
 @Repository
-public interface ProfessorRepository extends JpaRepository<Professor, Integer> {
+public interface ProfessorRepository extends JpaRepository<Professor, Long> {
     
 }

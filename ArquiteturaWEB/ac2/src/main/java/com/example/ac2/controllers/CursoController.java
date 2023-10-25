@@ -19,35 +19,44 @@ import com.example.ac2.services.CursoService;
 @RestController
 @RequestMapping("/api/curso")
 public class CursoController {
-    private final CursoService cursoService;
-
-    public CursoController(CursoService cursoService) {
-        this.cursoService = cursoService;
-    }
+    @Autowired
+    private CursoService cursoService;
 
     @GetMapping
-    public List<Curso> listarTodosCursos() {
-        return cursoService.listarTodos();
+    public List<Curso> getAllCursos() {
+        return cursoService.getAllCursos();
     }
 
     @GetMapping("/{id}")
-    public Curso listarCursoPorID(@PathVariable Integer id) {
-        return cursoService.obterPorId(id);
+    public Curso getCursoById(@PathVariable Long id) {
+        return cursoService.getCursoById(id);
     }
 
     @PostMapping
-    public Curso criarCurso(@RequestBody Curso curso) {
-        return cursoService.salvar(curso);
+    public Curso createCurso(@RequestBody Curso curso) {
+        return cursoService.createCurso(curso);
     }
 
     @PutMapping("/{id}")
-    public Curso atualizarCurso(@PathVariable Integer id, @RequestBody Curso curso) {
-        return cursoService.editar(id, curso);
+    public Curso updateCurso(@PathVariable Long id, @RequestBody Curso curso) {
+        return cursoService.updateCurso(id, curso);
     }
 
     @DeleteMapping("/{id}")
-    public void deletarCurso(@PathVariable Integer id) {
-        cursoService.excluir(id);
+    public void deleteCurso(@PathVariable Long id) {
+        cursoService.deleteCurso(id);
+    }
+    
+    @PostMapping("/{cursoId}/professores/{professorId}")
+    public Curso addProfessorToCurso(
+            @PathVariable Long cursoId, @PathVariable Long professorId) {
+        return cursoService.addProfessorToCurso(cursoId, professorId);
+    }
+    
+    @DeleteMapping("/{cursoId}/professores/{professorId}")
+    public Curso removeProfessorFromCurso(
+            @PathVariable Long cursoId, @PathVariable Long professorId) {
+        return cursoService.removeProfessorFromCurso(cursoId, professorId);
     }
 }
 

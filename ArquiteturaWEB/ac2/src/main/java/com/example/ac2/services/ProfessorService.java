@@ -9,36 +9,78 @@ import org.springframework.stereotype.Service;
 
 import com.example.ac2.dtos.DadosProfessorDTO;
 import com.example.ac2.dtos.ProfessorDTO;
+import com.example.ac2.models.Curso;
 import com.example.ac2.models.Professor;
+import com.example.ac2.repository.CursoRepository;
 import com.example.ac2.repository.ProfessorRepository;
 
-public interface ProfessorService {
-    Professor salvar(Professor professor);
+@Service
+public class ProfessorService {
+    @Autowired
+    private ProfessorRepository professorRepository;
 
-    List<Professor> listarTodos();
+    @Autowired
+    private CursoRepository cursoRepository;
 
-    Professor obterPorId(Integer id);
+    public List<Professor> getAllProfessores() {
+        return professorRepository.findAll();
+    }
 
-    void excluir(Integer id);
+    public Professor getProfessorById(Long id) {
+        return professorRepository.findById(id).orElse(null);
+    }
 
-    Professor editar(Integer id, Professor professor);
+    public Professor createProfessor(Professor professor) {
+        return professorRepository.save(professor);
+    }
 
-    // public List<ProfessorDTO> listarPorCategorias(List<Integer> cursoProfessorId) {
-    // List<ProfessorDTO> professores = professorRepository.findAll().stream()
-    //         .filter(p -> cursoProfessorId.contains(
-    //                 p.getCursos() == null ? 0 : p.getCursos().getId()))
-    //         .map((Professor p) -> {
-    //             return ProfessorDTO.builder()
-    //                     .id(p.getId())
-    //                     .nome(p.getNome())
-    //                     .rg(p.getRg())
-    //                     .cursoProfessorId(
-    //                             p.getCursos() == null ? 0
-    //                                     : p.getCursos())
-    //                     .build();
-    //         })
-    //         .collect(Collectors.toList());
-    // return professores;
-    // }
+    public Professor updateProfessor(Long id, Professor professor) {
+        Professor existingProfessor = professorRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Professor não encontrado com o ID especificado."));
+        
+        existingProfessor.setNome(professor.getNome());
+        existingProfessor.setCpf(professor.getCpf());
+        existingProfessor.setRg(professor.getRg());
+        existingProfessor.setEndereco(professor.getEndereco());
+        existingProfessor.setCelular(professor.getCelular());
+        
+        return professorRepository.save(existingProfessor);
+    }
+
+    public void deleteProfessor(Long id) {
+        Professor professor = professorRepository.findById(id)
+        .orElseThrow(() -> new RuntimeException("Professor não encontrado com o ID especificado."));
+
+        professorRepository.delete(professor);
+    }
+
+    public Professor addCursoToProfessor(Long professorId, Long cursoId) {
+        Professor professor = professorRepository.findById(professorId)
+                .orElseThrow(() -> new RuntimeException("Professor não encontrado com o ID especificado."));
+        
+        Curso curso = cursoRepository.findById(cursoId)
+                .orElseThrow(() -> new RuntimeException("Curso não encontrado com o ID especificado."));
+
+        professor.getCursos().add(curso);
+        
+        return professorRepository.save(professor);
+    }
+
+    public Professor removeCursoFromProfessor(Long professorId, Long cursoId) {
+        Professor professor = professorRepository.findById(professorId)
+                .orElseThrow(() -> new RuntimeException("Professor não encontrado com o ID especificado."));
+        
+        Curso curso = cursoRepository.findById(cursoId)
+                .orElseThrow(() -> new RuntimeException("Curso não encontrado com o ID especificado."));
+
+        if (professor.getCursos().contains(curso)) {
+            professor.getCursos().remove(curso);
+            
+            return professorRepository.save(professor);
+        } else {
+            throw new RuntimeException("O professor não está associado a este curso.");
+        }
+    }
 }
+
 
