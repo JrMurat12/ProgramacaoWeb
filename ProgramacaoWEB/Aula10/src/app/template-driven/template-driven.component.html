@@ -1,0 +1,28 @@
+<h1>Exemplo Formulário - Template Driven</h1>
+<form #form="ngForm" (submit)="onSubmit(form)">
+    <div class="mb-3">
+        <label for="nome" class="form-label">Nome</label>
+        <input type="text" class="form-control" name="nome" [(ngModel)]="nome" required>
+        <div *ngIf="form.submitted && form.controls['nome'].errors" class="text-danger">
+            <div *ngIf="form.controls['nome'].errors['required']">Nome obrigatório</div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="text" class="form-control" name="email" [(ngModel)]="email" required>
+        <div *ngIf="form.submitted && form.controls['email'].errors" class="text-danger">
+            <div *ngIf="form.controls['email'].errors['required']">E-mail obrigatório</div>
+        </div>
+        <div *ngIf="form.submitted && form.controls['email'].errors" class="text-danger">
+            <div *ngIf="form.controls['email'].errors['required']">E-mail fora do padrão</div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="senha" class="form-label">Senha</label>
+        <input type="text" class="form-control" name="senha" [(ngModel)]="senha" required>
+        <div *ngIf="form.submitted && form.controls['senha'].errors" class="text-danger">
+            <div *ngIf="form.controls['senha'].errors['required']">Senha obrigatório</div>
+        </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Salvar</button>
+</form>

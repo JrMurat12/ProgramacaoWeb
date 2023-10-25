@@ -7,6 +7,7 @@ import { TelaFilho1Component } from './tela-pai/tela-filho1/tela-filho1.componen
 import { TelaFilho2Component } from './tela-pai/tela-filho2/tela-filho2.component';
 import { CadastroAlunoComponent } from './cadastro-aluno/cadastro-aluno.component';
 import { ApoliceSeguroComponent } from './apolice-seguro/apolice-seguro.component';
+import { TemplateDrivenComponent } from './template-driven/template-driven.component';
 
 const routes: Routes = [
   { path: 'calculadora', component: CalculadoraComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
       {path: 'tela-filho1', component: TelaFilho1Component },
       {path: 'tela-filho2', component: TelaFilho2Component },
   ] },
+  { path: 'template-driven', component: TemplateDrivenComponent },
 ];
 
 @NgModule({

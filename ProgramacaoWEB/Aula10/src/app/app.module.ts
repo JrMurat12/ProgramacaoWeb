@@ -13,9 +13,10 @@ import { TelaFilho1Component } from './tela-pai/tela-filho1/tela-filho1.componen
 import { TelaFilho2Component } from './tela-pai/tela-filho2/tela-filho2.component';
 import { CadastroAlunoComponent } from './cadastro-aluno/cadastro-aluno.component';
 import { ApoliceSeguroComponent } from './apolice-seguro/apolice-seguro.component';
+import { TemplateDrivenComponent } from './template-driven/template-driven.component';
 
 @NgModule({
-  declarations: [AppComponent, MenuSuperiorComponent, CalculadoraComponent, CalcularMediaComponent, TelaPaiComponent, TelaFilho1Component, TelaFilho2Component, CadastroAlunoComponent, ApoliceSeguroComponent],
+  declarations: [AppComponent, MenuSuperiorComponent, CalculadoraComponent, CalcularMediaComponent, TelaPaiComponent, TelaFilho1Component, TelaFilho2Component, CadastroAlunoComponent, ApoliceSeguroComponent, TemplateDrivenComponent],
   imports: [BrowserModule, AppRoutingModule, NgbModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
