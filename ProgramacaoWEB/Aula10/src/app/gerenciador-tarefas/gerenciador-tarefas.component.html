@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="mb-3">
+        <form (submit)="addTask()">
+            <input type="text" class="form-control" placeholder="Adicionar nova tarefa" [(ngModel)]="newTask" name="newTask" required>
+            <br>
+            <button class="btn btn-primary" type="submit">Adicionar</button>
+        </form>
+    </div>
+    <div class="mb-3">
+        <ul>
+        <li *ngFor="let task of tasks" [ngStyle]="{'text-decoration': task.concluida ? 'line-through' : 'none'}">
+            {{ task.description }}
+            <button class="btn btn-success" style="margin-right: 0.5em;" (click)="toggleTaskStatus(task)">Concluir</button>
+            <button class="btn btn-danger" (click)="deleteTask(task)">Excluir</button>
+        </li>
+        </ul>
+    </div>
+</div>

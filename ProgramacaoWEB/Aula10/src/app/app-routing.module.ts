@@ -8,6 +8,7 @@ import { TelaFilho2Component } from './tela-pai/tela-filho2/tela-filho2.componen
 import { CadastroAlunoComponent } from './cadastro-aluno/cadastro-aluno.component';
 import { ApoliceSeguroComponent } from './apolice-seguro/apolice-seguro.component';
 import { TemplateDrivenComponent } from './template-driven/template-driven.component';
+import { GerenciadorTarefasComponent } from './gerenciador-tarefas/gerenciador-tarefas.component';
 
 const routes: Routes = [
   { path: 'calculadora', component: CalculadoraComponent },
@@ -22,6 +23,7 @@ const routes: Routes = [
       {path: 'tela-filho2', component: TelaFilho2Component },
   ] },
   { path: 'template-driven', component: TemplateDrivenComponent },
+  { path: 'gerenciador-tarefas', component: GerenciadorTarefasComponent },
 ];
 
 @NgModule({
