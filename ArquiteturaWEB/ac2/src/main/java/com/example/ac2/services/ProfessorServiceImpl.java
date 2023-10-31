@@ -5,78 +5,50 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.ac2.exceptions.RegraNegocioException;
 import com.example.ac2.models.Curso;
 import com.example.ac2.models.Professor;
-import com.example.ac2.repository.CursoRepository;
 import com.example.ac2.repository.ProfessorRepository;
 
 @Service
 public class ProfessorServiceImpl implements ProfessorService {
 
-    @Autowired
-    private ProfessorRepository professorRepository;
+    private final ProfessorRepository professorRepository;
 
     @Autowired
-    private CursoRepository cursoRepository;
+    public ProfessorServiceImpl(ProfessorRepository professorRepository) {
+        this.professorRepository = professorRepository;
+    }
+    @Override
+    public Professor salvar(Professor professor) {
+        return professorRepository.save(professor);
+    }
 
-    public List<Professor> getAllProfessores() {
+    @Override
+    public List<Professor> listarTodos() {
         return professorRepository.findAll();
     }
 
-    public Professor getProfessorById(Long id) {
+    @Override
+    public Professor obterPorId(Long id) {
         return professorRepository.findById(id).orElse(null);
     }
 
-    public Professor createProfessor(Professor professor) {
-        return professorRepository.save(professor);
-    }
-
-    public Professor updateProfessor(Long id, Professor professor) {
-        Professor existingProfessor = professorRepository.findById(id)
-                .orElseThrow(() -> new RegraNegocioException("Professor não encontrado com o ID especificado."));
-        
-        existingProfessor.setNome(professor.getNome());
-        existingProfessor.setCpf(professor.getCpf());
-        existingProfessor.setRg(professor.getRg());
-        existingProfessor.setEndereco(professor.getEndereco());
-        existingProfessor.setCelular(professor.getCelular());
-        
-        return professorRepository.save(existingProfessor);
-    }
-
-    public void deleteProfessor(Long id) {
-        Professor professor = professorRepository.findById(id)
-        .orElseThrow(() -> new RegraNegocioException("Professor não encontrado com o ID especificado."));
-
-        professorRepository.delete(professor);
-    }
-
-    public Professor addCursoToProfessor(Long professorId, Long cursoId) {
-        Professor professor = professorRepository.findById(professorId)
-                .orElseThrow(() -> new RegraNegocioException("Professor não encontrado com o ID especificado."));
-        
-        Curso curso = cursoRepository.findById(cursoId)
-                .orElseThrow(() -> new RegraNegocioException("Curso não encontrado com o ID especificado."));
-
-        professor.getCursos().add(curso);
-        
-        return professorRepository.save(professor);
-    }
-
-    public Professor removeCursoFromProfessor(Long professorId, Long cursoId) {
-        Professor professor = professorRepository.findById(professorId)
-                .orElseThrow(() -> new RegraNegocioException("Professor não encontrado com o ID especificado."));
-        
-        Curso curso = cursoRepository.findById(cursoId)
-                .orElseThrow(() -> new RegraNegocioException("Curso não encontrado com o ID especificado."));
-
-        if (professor.getCursos().contains(curso)) {
-            professor.getCursos().remove(curso);
-            
+    @Override
+    public Professor atualizar(Professor professor, Long id) {
+        if (professorRepository.existsById(id)) {
+            professor.setId(id);
             return professorRepository.save(professor);
-        } else {
-            throw new RegraNegocioException("O professor não está associado a este curso.");
         }
+        return null;
     }
+
+    @Override
+    public void deletar(Long id) {
+        professorRepository.deleteById(id);
+    }
+
+    public List<Professor> getProfessoresEspecializados(Curso curso) {
+        return professorRepository.findByCursosContaining(curso);
+    }
+
 }

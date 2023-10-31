@@ -6,13 +6,11 @@ import com.example.ac2.models.Professor;
 
 public interface ProfessorService {
     
-    Professor createProfessor(Professor professor);
-    List<Professor> getAllProfessores();
-    Professor getProfessorById(Long id);
-    Professor updateProfessor(Long id, Professor curso);
-    void deleteProfessor(Long id);
-    Professor addCursoToProfessor (Long professorId, Long cursoId);
-    Professor removeCursoFromProfessor (Long professorId, Long cursoId);
+    Professor salvar(Professor professor);
+    List<Professor> listarTodos();
+    Professor obterPorId(Long id);
+    Professor atualizar(Professor professor, Long id);
+    void deletar(Long id);
     
 }
 

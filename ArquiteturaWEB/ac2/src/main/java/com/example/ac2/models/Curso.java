@@ -1,20 +1,29 @@
 package com.example.ac2.models;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Curso {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,78 +33,18 @@ public class Curso {
     private String objetivos;
     private String ementa;
 
-    @ManyToMany(mappedBy = "cursos")
-    private Set<Professor> professores = new HashSet<>();
+    @ManyToMany
+    @JoinTable(
+            name = "curso_professor",
+            joinColumns = @JoinColumn(name = "curso_id"),
+            inverseJoinColumns = @JoinColumn(name = "professor_id")
+    )
+    private List<Professor> professores;
 
     @OneToMany(mappedBy = "curso")
-    private List<Agenda> agendas = new ArrayList<>();
+    @JsonManagedReference
+    private List<Agenda> agendas;
 
-    public Curso(Long id, String descricao, int cargaHoraria, String objetivos, String ementa) {
-        this.id = id;
-        this.descricao = descricao;
-        this.cargaHoraria = cargaHoraria;
-        this.objetivos = objetivos;
-        this.ementa = ementa;
-    }
 
-    public Curso() {
-
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public int getCargaHoraria() {
-        return cargaHoraria;
-    }
-
-    public void setCargaHoraria(int cargaHoraria) {
-        this.cargaHoraria = cargaHoraria;
-    }
-
-    public String getObjetivos() {
-        return objetivos;
-    }
-
-    public void setObjetivos(String objetivos) {
-        this.objetivos = objetivos;
-    }
-
-    public String getEmenta() {
-        return ementa;
-    }
-
-    public void setEmenta(String ementa) {
-        this.ementa = ementa;
-    }
-
-    public Set<Professor> getProfessores() {
-        return professores;
-    }
-
-    public void setProfessores(Set<Professor> professores) {
-        this.professores = professores;
-    }
-
-    public List<Agenda> getAgendas() {
-        return agendas;
-    }
-
-    public void setAgendas(List<Agenda> agendas) {
-        this.agendas = agendas;
-    }
     
 }

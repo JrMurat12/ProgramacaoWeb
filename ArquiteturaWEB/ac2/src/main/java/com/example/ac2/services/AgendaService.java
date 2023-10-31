@@ -6,11 +6,12 @@ import com.example.ac2.models.Agenda;
 
 public interface AgendaService {
 
-    Agenda createAgenda(Agenda agenda);
-    List<Agenda> getAllAgendas();
-    Agenda getAgendaById(Long id);
-    Agenda updateAgenda(Agenda agenda, Long id);
-    void deleteAgenda(Long id);
+    Agenda salvar(Agenda agenda);
+    List<Agenda> listarTodos();
+    Agenda obterPorId(Long id);
+    Agenda atualizar(Agenda agenda, Long id);
+    void deletar(Long id);
+    boolean professorIsAvailable(Agenda novaAgenda);
 
 }
 
