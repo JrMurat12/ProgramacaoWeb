@@ -1,54 +1,82 @@
-// package com.example.ac2.services;
-// import java.util.ArrayList;
-// import java.util.Collections;
-// import java.util.List;
-// import java.util.stream.Collectors;
-// import org.springframework.stereotype.Service;
-// import com.example.ac2.dtos.CursoDTO;
-// import com.example.ac2.dtos.ProfessorDTO;
-// import com.example.ac2.exceptions.RegraNegocioException;
-// import com.example.ac2.models.Curso;
-// import com.example.ac2.models.Professor;
-// import com.example.ac2.repository.CursoRepository;
-// import com.example.ac2.repository.ProfessorRepository;
-// import lombok.RequiredArgsConstructor;
+package com.example.ac2.services;
 
-// @Service
-// public class ProfessorServiceImpl implements ProfessorService {
+import java.util.List;
 
-//     private final ProfessorRepository professorRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-//     public ProfessorServiceImpl(ProfessorRepository professorRepository) {
-//         this.professorRepository = professorRepository;
-//     }
+import com.example.ac2.exceptions.RegraNegocioException;
+import com.example.ac2.models.Curso;
+import com.example.ac2.models.Professor;
+import com.example.ac2.repository.CursoRepository;
+import com.example.ac2.repository.ProfessorRepository;
 
-//     @Override
-//     public Professor salvar(Professor professor) {
-//         return professorRepository.save(professor);
-//     }
+@Service
+public class ProfessorServiceImpl implements ProfessorService {
 
-//     @Override
-//     public List<Professor> listarTodos() {
-//         return professorRepository.findAll();
-//     }
+    @Autowired
+    private ProfessorRepository professorRepository;
 
-//     @Override
-//     public Professor obterPorId(Integer id) {
-//         return professorRepository.findById(id).orElse(null);
-//     }
+    @Autowired
+    private CursoRepository cursoRepository;
 
-//     @Override
-//     public Professor editar(Integer id, Professor professor) {
-//         if(professorRepository.existsById(id)){
-//             professor.setId(id);
-//             return professorRepository.save(professor);
-//         }else {
-//             return null;
-//         }
-//     }
+    public List<Professor> getAllProfessores() {
+        return professorRepository.findAll();
+    }
 
-//     @Override
-//     public void excluir(Integer id) {
-//         professorRepository.deleteById(id);
-//     }
-// }
+    public Professor getProfessorById(Long id) {
+        return professorRepository.findById(id).orElse(null);
+    }
+
+    public Professor createProfessor(Professor professor) {
+        return professorRepository.save(professor);
+    }
+
+    public Professor updateProfessor(Long id, Professor professor) {
+        Professor existingProfessor = professorRepository.findById(id)
+                .orElseThrow(() -> new RegraNegocioException("Professor não encontrado com o ID especificado."));
+        
+        existingProfessor.setNome(professor.getNome());
+        existingProfessor.setCpf(professor.getCpf());
+        existingProfessor.setRg(professor.getRg());
+        existingProfessor.setEndereco(professor.getEndereco());
+        existingProfessor.setCelular(professor.getCelular());
+        
+        return professorRepository.save(existingProfessor);
+    }
+
+    public void deleteProfessor(Long id) {
+        Professor professor = professorRepository.findById(id)
+        .orElseThrow(() -> new RegraNegocioException("Professor não encontrado com o ID especificado."));
+
+        professorRepository.delete(professor);
+    }
+
+    public Professor addCursoToProfessor(Long professorId, Long cursoId) {
+        Professor professor = professorRepository.findById(professorId)
+                .orElseThrow(() -> new RegraNegocioException("Professor não encontrado com o ID especificado."));
+        
+        Curso curso = cursoRepository.findById(cursoId)
+                .orElseThrow(() -> new RegraNegocioException("Curso não encontrado com o ID especificado."));
+
+        professor.getCursos().add(curso);
+        
+        return professorRepository.save(professor);
+    }
+
+    public Professor removeCursoFromProfessor(Long professorId, Long cursoId) {
+        Professor professor = professorRepository.findById(professorId)
+                .orElseThrow(() -> new RegraNegocioException("Professor não encontrado com o ID especificado."));
+        
+        Curso curso = cursoRepository.findById(cursoId)
+                .orElseThrow(() -> new RegraNegocioException("Curso não encontrado com o ID especificado."));
+
+        if (professor.getCursos().contains(curso)) {
+            professor.getCursos().remove(curso);
+            
+            return professorRepository.save(professor);
+        } else {
+            throw new RegraNegocioException("O professor não está associado a este curso.");
+        }
+    }
+}

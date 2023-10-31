@@ -1,9 +1,7 @@
 package com.example.ac2.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,28 +24,28 @@ public class AgendaController {
     }
 
     @GetMapping
-    public List<Agenda> listarTodasAgendas() {
-        return agendaService.listarTodos();
+    public List<Agenda> getAllAgendas() {
+        return agendaService.getAllAgendas();
     }
 
     @GetMapping("/{id}")
-    public Agenda listarAgendaPorID(@PathVariable Long id) {
-        return agendaService.obterPorId(id);
+    public Agenda getAgendaById(@PathVariable Long id) {
+        return agendaService.getAgendaById(id);
     }
 
     @PostMapping
-    public Agenda salvarAgenda(@RequestBody Agenda agenda) {
-        return agendaService.salvar(agenda);
+    public Agenda createAgenda(@RequestBody Agenda agenda) {
+        return agendaService.createAgenda(agenda);
     }
 
     @PutMapping("/{id}")
-    public Agenda atualizarAgenda(@PathVariable Long id, @RequestBody Agenda agenda) {
-        return agendaService.editar(id, agenda);
+    public Agenda updatAgenda(@PathVariable Long id, @RequestBody Agenda agenda) {
+        return agendaService.updateAgenda(agenda, id);
     }
 
     @DeleteMapping("/{id}")
-    public void deletarAgenda(@PathVariable Long id) {
-        agendaService.excluir(id);
+    public void deleteAgenda(@PathVariable Long id) {
+        agendaService.deleteAgenda(id);
     }
 }
 
