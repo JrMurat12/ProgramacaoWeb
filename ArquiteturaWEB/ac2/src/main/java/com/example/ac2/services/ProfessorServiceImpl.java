@@ -19,8 +19,8 @@ public class ProfessorServiceImpl implements ProfessorService {
         this.professorRepository = professorRepository;
     }
     @Override
-    public Professor salvar(Professor professor) {
-        return professorRepository.save(professor);
+    public void salvar(Professor professor) {
+        professorRepository.save(professor);
     }
 
     @Override

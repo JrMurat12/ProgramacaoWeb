@@ -6,7 +6,7 @@ import com.example.ac2.models.Professor;
 
 public interface ProfessorService {
     
-    Professor salvar(Professor professor);
+    void salvar(Professor professor);
     List<Professor> listarTodos();
     Professor obterPorId(Long id);
     Professor atualizar(Professor professor, Long id);
