@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ac2teste.ac2teste.dtos.DadosProfessorDTO;
+import ac2teste.ac2teste.dtos.ProfessorDTO;
 import ac2teste.ac2teste.models.Professor;
 import ac2teste.ac2teste.services.ProfessorService;
 
@@ -21,24 +23,34 @@ public class ProfessorController {
     @Autowired
     private ProfessorService professorService;
 
+    // @GetMapping
+    // public List<Professor> getAllProfessores() {
+    //     return professorService.getAllProfessores();
+    // }
+
     @GetMapping
-    public List<Professor> getAllProfessores() {
+    public List<ProfessorDTO> getAllProfessores() {
         return professorService.getAllProfessores();
     }
 
+    // @GetMapping("/{id}")
+    // public Professor getProfessorById(@PathVariable Long id) {
+    //     return professorService.getProfessorById(id);
+    // }
+
     @GetMapping("/{id}")
-    public Professor getProfessorById(@PathVariable Long id) {
+    public DadosProfessorDTO getProfessorById(@PathVariable Long id) {
         return professorService.getProfessorById(id);
     }
 
     @PostMapping
-    public Professor createProfessor(@RequestBody Professor professor) {
-        return professorService.createProfessor(professor);
+    public void createProfessor(@RequestBody Professor professor) {
+        professorService.createProfessor(professor);
     }
 
     @PutMapping("/{id}")
-    public Professor updateProfessor(@PathVariable Long id, @RequestBody Professor professor) {
-        return professorService.updateProfessor(id, professor);
+    public void updateProfessor(@PathVariable Long id, @RequestBody Professor professor) {
+        professorService.updateProfessor(id, professor);
     }
 
     @DeleteMapping("/{id}")

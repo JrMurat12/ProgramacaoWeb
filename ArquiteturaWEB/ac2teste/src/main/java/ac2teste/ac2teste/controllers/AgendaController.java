@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ac2teste.ac2teste.dtos.AgendaDTO;
+import ac2teste.ac2teste.dtos.DadosAgendaDTO;
 import ac2teste.ac2teste.models.Agenda;
 import ac2teste.ac2teste.services.AgendaService;
 
@@ -24,12 +26,12 @@ public class AgendaController {
     }
 
     @GetMapping
-    public List<Agenda> getAllAgendas() {
+    public List<AgendaDTO> getAllAgendas() {
         return agendaService.getAllAgendas();
     }
 
     @GetMapping("/{id}")
-    public Agenda getAgendaById(@PathVariable Long id) {
+    public DadosAgendaDTO getAgendaById(@PathVariable Long id) {
         return agendaService.getAgendaById(id);
     }
 
@@ -39,8 +41,8 @@ public class AgendaController {
     }
 
     @PutMapping("/{id}")
-    public Agenda updatAgenda(@PathVariable Long id, @RequestBody Agenda agenda) {
-        return agendaService.updateAgenda(agenda, id);
+    public void updatAgenda(@PathVariable Long id, @RequestBody Agenda agenda) {
+        agendaService.updateAgenda(agenda, id);
     }
 
     @DeleteMapping("/{id}")

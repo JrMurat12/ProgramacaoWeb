@@ -1,9 +1,14 @@
 package ac2teste.ac2teste.services;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import ac2teste.ac2teste.dtos.AgendaDTO;
+import ac2teste.ac2teste.dtos.CursoDTO;
+import ac2teste.ac2teste.dtos.DadosAgendaDTO;
+import ac2teste.ac2teste.dtos.ProfessorDTO;
 import ac2teste.ac2teste.exceptions.RegraNegocioException;
 import ac2teste.ac2teste.models.Agenda;
 import ac2teste.ac2teste.models.Curso;
@@ -45,24 +50,81 @@ public class AgendaServiceImpl implements AgendaService {
         agendaRepository.save(agendamento);
     }
 
+    // @Override
+    // public List<Agenda> getAllAgendas() {
+    //     return agendaRepository.findAll();
+    // }
+
     @Override
-    public List<Agenda> getAllAgendas() {
-        return agendaRepository.findAll();
+    public List<AgendaDTO> getAllAgendas() {
+        List<AgendaDTO> agenda = agendaRepository.findAll().stream().map(
+            (Agenda a) -> {
+                return AgendaDTO.builder()
+                .id(a.getId())
+                .dataInicio(a.getDataInicio())
+                .dataFinal(a.getDataFim())
+                .horarioInicio(a.getHorarioInicio())
+                .horarioFim(a.getHorarioFim())
+                .cidade(a.getCidade())
+                .estado(a.getEstado())
+                .cep(a.getCep())
+                .professores_id(a.getProfessor().getId() != null ? a.getProfessor().getId(): 0)
+                .curso_id(a.getCurso().getId() != null ? a.getCurso().getId(): 0)
+                .build();
+            }
+        ).collect(Collectors.toList());
+
+        return agenda;
+    }
+
+    // @Override
+    // public Agenda getAgendaById(Long id) {
+    //     return agendaRepository.findById(id).orElse(null);
+    // }
+
+    @Override
+    public DadosAgendaDTO getAgendaById(Long id) {
+        return agendaRepository.findById(id).map(
+            (Agenda ag) -> {
+                return DadosAgendaDTO.builder()
+                .id(ag.getId())
+                .professores(ag.getProfessor() != null ?
+                    ProfessorDTO.builder()
+                    .id(ag.getProfessor().getId())
+                    .nome(ag.getProfessor().getNome())
+                    .cpf(ag.getProfessor().getCpf())
+                    .rg(ag.getProfessor().getRg())
+                    .endereco(ag.getProfessor().getEndereco())
+                    .celular(ag.getProfessor().getCelular())
+                    .build() : null)
+
+                .cursos(ag.getCurso() != null ?
+                    CursoDTO.builder()
+                    .id(ag.getCurso().getId())
+                    .descricao(ag.getCurso().getDescricao())
+                    .cargaHoraria(ag.getCurso().getCargaHoraria())
+                    .objetivos(ag.getCurso().getObjetivos())
+                    .ementa(ag.getCurso().getEmenta())
+                    .build() : null)
+
+                .dataInicio(ag.getDataInicio())
+                .dataFinal(ag.getDataFim())
+                .horarioInicio(ag.getHorarioInicio())
+                .horarioFim(ag.getHorarioFim())
+                .cidade(ag.getCidade())
+                .estado(ag.getEstado())
+                .cep(ag.getCep())
+                .build();
+            }
+        ).orElseThrow(
+            () -> new RegraNegocioException("Agenda não foi encontrada com o ID Fornecido!")
+        );
     }
 
     @Override
-    public Agenda getAgendaById(Long id) {
-        return agendaRepository.findById(id).orElse(null);
-    }
-
-    @Override
-    public Agenda updateAgenda(Agenda agenda, Long id) {
-        if(agendaRepository.existsById(id)){
+    public void updateAgenda(Agenda agenda, Long id) {
             agenda.setId(id);
-            return agendaRepository.save(agenda);
-        }else {
-            return null;
-        }
+            agendaRepository.save(agenda);
     }
 
     @Override

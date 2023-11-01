@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ac2teste.ac2teste.dtos.CursoDTO;
+import ac2teste.ac2teste.dtos.DadosCursoDTO;
 import ac2teste.ac2teste.models.Curso;
 import ac2teste.ac2teste.services.CursoService;
 
@@ -21,24 +23,34 @@ public class CursoController {
     @Autowired
     private CursoService cursoService;
 
+    // @GetMapping
+    // public List<Curso> getAllCursos() {
+    //     return cursoService.getAllCursos();
+    // }
+
     @GetMapping
-    public List<Curso> getAllCursos() {
+    public List<CursoDTO> getAllCursos() {
         return cursoService.getAllCursos();
     }
 
+    // @GetMapping("/{id}")
+    // public Curso getCursoById(@PathVariable Long id) {
+    //     return cursoService.getCursoById(id);
+    // }
+
     @GetMapping("/{id}")
-    public Curso getCursoById(@PathVariable Long id) {
+    public DadosCursoDTO getCursoById(@PathVariable Long id) {
         return cursoService.getCursoById(id);
     }
 
     @PostMapping
-    public Curso createCurso(@RequestBody Curso curso) {
-        return cursoService.createCurso(curso);
+    public void createCurso(@RequestBody Curso curso) {
+        cursoService.createCurso(curso);
     }
 
     @PutMapping("/{id}")
-    public Curso updateCurso(@PathVariable Long id, @RequestBody Curso curso) {
-        return cursoService.updateCurso(id, curso);
+    public void updateCurso(@PathVariable Long id, @RequestBody Curso curso) {
+        cursoService.updateCurso(id, curso);
     }
 
     @DeleteMapping("/{id}")
@@ -46,17 +58,17 @@ public class CursoController {
         cursoService.deleteCurso(id);
     }
     
-    @PostMapping("/{cursoId}/professores/{professorId}")
-    public void addProfessorToCurso(
-            @PathVariable Long cursoId, @PathVariable Long professorId) {
-        cursoService.addProfessorToCurso(cursoId, professorId);
-    }
+    // @PostMapping("/{cursoId}/professores/{professorId}")
+    // public void addProfessorToCurso(
+    //         @PathVariable Long cursoId, @PathVariable Long professorId) {
+    //     cursoService.addProfessorToCurso(cursoId, professorId);
+    // }
     
-    @DeleteMapping("/{cursoId}/professores/{professorId}")
-    public void removeProfessorFromCurso(
-            @PathVariable Long cursoId, @PathVariable Long professorId) {
-        cursoService.removeProfessorFromCurso(cursoId, professorId);
-    }
+    // @DeleteMapping("/{cursoId}/professores/{professorId}")
+    // public void removeProfessorFromCurso(
+    //         @PathVariable Long cursoId, @PathVariable Long professorId) {
+    //     cursoService.removeProfessorFromCurso(cursoId, professorId);
+    // }
 }
 
 

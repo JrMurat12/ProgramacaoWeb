@@ -1,5 +1,7 @@
 package ac2teste.ac2teste.dtos;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,4 +18,5 @@ public class DadosProfessorDTO {
     private String rg;
     private String endereco;
     private String celular;
+    private List<CursoDTO> cursos;
 }

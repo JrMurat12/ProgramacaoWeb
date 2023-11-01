@@ -1,10 +1,13 @@
 package ac2teste.ac2teste.services;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ac2teste.ac2teste.dtos.DadosProfessorDTO;
+import ac2teste.ac2teste.dtos.ProfessorDTO;
 import ac2teste.ac2teste.exceptions.RegraNegocioException;
 import ac2teste.ac2teste.models.Curso;
 import ac2teste.ac2teste.models.Professor;
@@ -20,19 +23,55 @@ public class ProfessorServiceImpl implements ProfessorService {
     @Autowired
     private CursoRepository cursoRepository;
 
-    public List<Professor> getAllProfessores() {
-        return professorRepository.findAll();
+    // public List<Professor> getAllProfessores() {
+    //     return professorRepository.findAll();
+    // }
+
+    @Override
+    public List<ProfessorDTO> getAllProfessores() {
+        List<ProfessorDTO> cursos = professorRepository.findAll().stream().map(
+            (Professor pf) -> {
+                return ProfessorDTO.builder()
+                .id(pf.getId())
+                .nome(pf.getNome())
+                .cpf(pf.getCpf())
+                .rg(pf.getRg())
+                .endereco(pf.getEndereco())
+                .celular(pf.getCelular())
+                .build();
+            }
+        ).collect(Collectors.toList());
+
+        return cursos;
     }
 
-    public Professor getProfessorById(Long id) {
-        return professorRepository.findById(id).orElse(null);
+    // public Professor getProfessorById(Long id) {
+    //     return professorRepository.findById(id).orElse(null);
+    // }
+
+    @Override
+    public DadosProfessorDTO getProfessorById(Long id) {
+        return professorRepository.findById(id).map(
+            (Professor pf) -> {
+                return DadosProfessorDTO.builder()
+                .id(pf.getId())
+                .nome(pf.getNome())
+                .cpf(pf.getCpf())
+                .rg(pf.getRg())
+                .endereco(pf.getEndereco())
+                .celular(pf.getCelular())
+                .build();
+            }
+        ).orElseThrow(
+            () -> new RegraNegocioException("Professor não encontrado com o ID fornecido!")
+        );
     }
 
-    public Professor createProfessor(Professor professor) {
-        return professorRepository.save(professor);
+    public void createProfessor(Professor professor) {
+        professorRepository.save(professor);
     }
 
-    public Professor updateProfessor(Long id, Professor professor) {
+    public void updateProfessor(Long id, Professor professor) {
         Professor existingProfessor = professorRepository.findById(id)
                 .orElseThrow(() -> new RegraNegocioException("Professor não encontrado com o ID especificado."));
         
@@ -42,7 +81,7 @@ public class ProfessorServiceImpl implements ProfessorService {
         existingProfessor.setEndereco(professor.getEndereco());
         existingProfessor.setCelular(professor.getCelular());
         
-        return professorRepository.save(existingProfessor);
+        professorRepository.save(existingProfessor);
     }
 
     public void deleteProfessor(Long id) {
