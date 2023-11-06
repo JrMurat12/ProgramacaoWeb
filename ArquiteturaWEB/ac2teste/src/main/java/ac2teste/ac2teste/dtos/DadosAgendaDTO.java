@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class DadosAgendaDTO {
     private Long id;
     private LocalDate dataInicio;
-    private LocalDate dataFinal;
+    private LocalDate dataFim;
     private LocalTime horarioInicio;
     private LocalTime horarioFim;
     private String cidade;

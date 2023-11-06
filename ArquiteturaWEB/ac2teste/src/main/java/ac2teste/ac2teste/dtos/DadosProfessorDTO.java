@@ -18,5 +18,6 @@ public class DadosProfessorDTO {
     private String rg;
     private String endereco;
     private String celular;
-    private List<CursoDTO> cursos;
+    // private List<CursoDTO> cursos;
+    private List<AgendaDTO> agendas;
 }

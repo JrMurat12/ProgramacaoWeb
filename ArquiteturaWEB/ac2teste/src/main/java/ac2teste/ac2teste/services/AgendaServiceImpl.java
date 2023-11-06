@@ -62,7 +62,7 @@ public class AgendaServiceImpl implements AgendaService {
                 return AgendaDTO.builder()
                 .id(a.getId())
                 .dataInicio(a.getDataInicio())
-                .dataFinal(a.getDataFim())
+                .dataFim(a.getDataFim())
                 .horarioInicio(a.getHorarioInicio())
                 .horarioFim(a.getHorarioFim())
                 .cidade(a.getCidade())
@@ -108,7 +108,7 @@ public class AgendaServiceImpl implements AgendaService {
                     .build() : null)
 
                 .dataInicio(ag.getDataInicio())
-                .dataFinal(ag.getDataFim())
+                .dataFim(ag.getDataFim())
                 .horarioInicio(ag.getHorarioInicio())
                 .horarioFim(ag.getHorarioFim())
                 .cidade(ag.getCidade())

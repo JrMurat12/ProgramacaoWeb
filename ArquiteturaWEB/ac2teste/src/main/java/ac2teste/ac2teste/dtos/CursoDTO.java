@@ -16,5 +16,5 @@ public class CursoDTO {
     private String objetivos;
     private String ementa;
 
-    private ProfessorDTO professores;
+    // private ProfessorDTO professores;
 }

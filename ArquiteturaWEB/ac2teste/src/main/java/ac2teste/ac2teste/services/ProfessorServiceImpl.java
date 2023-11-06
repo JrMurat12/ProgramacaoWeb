@@ -6,9 +6,11 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ac2teste.ac2teste.dtos.AgendaDTO;
 import ac2teste.ac2teste.dtos.DadosProfessorDTO;
 import ac2teste.ac2teste.dtos.ProfessorDTO;
 import ac2teste.ac2teste.exceptions.RegraNegocioException;
+import ac2teste.ac2teste.models.Agenda;
 import ac2teste.ac2teste.models.Curso;
 import ac2teste.ac2teste.models.Professor;
 import ac2teste.ac2teste.repository.CursoRepository;
@@ -51,19 +53,44 @@ public class ProfessorServiceImpl implements ProfessorService {
 
     @Override
     public DadosProfessorDTO getProfessorById(Long id) {
-        return professorRepository.findById(id).map(
-            (Professor pf) -> {
-                return DadosProfessorDTO.builder()
-                .id(pf.getId())
-                .nome(pf.getNome())
-                .cpf(pf.getCpf())
-                .rg(pf.getRg())
-                .endereco(pf.getEndereco())
-                .celular(pf.getCelular())
-                .build();
-            }
-        ).orElseThrow(
-            () -> new RegraNegocioException("Professor não encontrado com o ID fornecido!")
+        return professorRepository.
+        findProfessoresFetchAgendas(id)
+        .map((Professor p) -> {
+          return DadosProfessorDTO
+            .builder()
+            .id(p.getId())
+            .nome(p.getNome())
+            .cpf(p.getCpf())
+            .rg(p.getRg())
+            .endereco(p.getEndereco())
+            .celular(p.getCelular())
+            .agendas(
+              p.getAgendas() != null
+                ? p
+                  .getAgendas()
+                  .stream()
+                  .map((Agenda a) -> {
+                    return AgendaDTO
+                      .builder()
+                      .id(a.getId())
+                      .dataInicio(a.getDataInicio())
+                      .dataFim(a.getDataFim())
+                      .horarioInicio(a.getHorarioInicio())
+                      .horarioFim(a.getHorarioFim())
+                      .cidade(a.getCidade())
+                      .estado(a.getEstado())
+                      .cep(a.getCep())
+                      .professores_id(a.getProfessor().getId() != null ? a.getProfessor().getId(): 0)
+                      .curso_id(a.getCurso().getId() != null ? a.getCurso().getId(): 0)
+                      .build();
+                  })
+                  .collect(Collectors.toList())
+                : null
+            )
+            .build();
+        })
+        .orElseThrow(() ->
+          new RegraNegocioException("Professor não encontrado com o ID fornecido!")
         );
     }
 
