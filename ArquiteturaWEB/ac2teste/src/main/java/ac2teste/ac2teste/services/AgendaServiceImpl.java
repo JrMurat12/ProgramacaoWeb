@@ -32,28 +32,27 @@ public class AgendaServiceImpl implements AgendaService {
 
     @Override
     public void createAgenda(Agenda agenda) {
-        Professor professor = professorRepository.findById(agenda.getProfessor().getId()).orElseThrow(() -> new RegraNegocioException("Erro ao encontrar Professor"));
-        Curso curso = cursoRepository.findById(agenda.getCurso().getId()).orElseThrow(() -> new RegraNegocioException("Erro ao encontrar Curso"));
+        if(professorIsAvailable(agenda)){
+            Professor professor = professorRepository.findById(agenda.getProfessor().getId()).orElseThrow(() -> new RegraNegocioException("Erro ao encontrar Professor"));
+            Curso curso = cursoRepository.findById(agenda.getCurso().getId()).orElseThrow(() -> new RegraNegocioException("Erro ao encontrar Curso"));
 
-        Agenda agendamento = new Agenda();
-        agendamento.setDataInicio(agenda.getDataInicio());
-        agendamento.setDataFim(agenda.getDataFim());
-        agendamento.setHorarioInicio(agenda.getHorarioInicio());
-        agendamento.setHorarioFim(agenda.getHorarioFim());
-        agendamento.setEstado(agenda.getEstado());
-        agendamento.setCidade(agenda.getCidade());
-        agendamento.setCep(agenda.getCep());
-        agendamento.setCurso(curso);
-        agendamento.setProfessor(professor);
-    
+            Agenda agendamento = new Agenda();
+            agendamento.setDataInicio(agenda.getDataInicio());
+            agendamento.setDataFim(agenda.getDataFim());
+            agendamento.setHorarioInicio(agenda.getHorarioInicio());
+            agendamento.setHorarioFim(agenda.getHorarioFim());
+            agendamento.setEstado(agenda.getEstado());
+            agendamento.setCidade(agenda.getCidade());
+            agendamento.setCep(agenda.getCep());
+            agendamento.setCurso(curso);
+            agendamento.setProfessor(professor);
+        
 
-        agendaRepository.save(agendamento);
+            agendaRepository.save(agendamento);
+        } else {
+            throw new RegraNegocioException("O professor não está disponível para esta agenda.");
+        }
     }
-
-    // @Override
-    // public List<Agenda> getAllAgendas() {
-    //     return agendaRepository.findAll();
-    // }
 
     @Override
     public List<AgendaDTO> getAllAgendas() {
@@ -76,11 +75,6 @@ public class AgendaServiceImpl implements AgendaService {
 
         return agenda;
     }
-
-    // @Override
-    // public Agenda getAgendaById(Long id) {
-    //     return agendaRepository.findById(id).orElse(null);
-    // }
 
     @Override
     public DadosAgendaDTO getAgendaById(Long id) {
@@ -132,27 +126,19 @@ public class AgendaServiceImpl implements AgendaService {
         agendaRepository.deleteById(id);
     }
 
-    // private boolean isProfessorDisponivel(Agenda agenda){
+    @Override
+    public boolean professorIsAvailable(Agenda novaAgenda) {
+        List<Agenda> agendasDoProfessor = agendaRepository.findByProfessorAndDataInicioLessThanEqualAndDataFimGreaterThanEqual(
+                novaAgenda.getProfessor(), novaAgenda.getDataFim(), novaAgenda.getDataInicio());
 
-    //     List<Agenda> agendamentosDoProfessor = agendaRepository.findByProfessor(agenda.getProfessor());
+        return agendasDoProfessor.stream()
+                .noneMatch(agenda -> agenda.getId().equals(novaAgenda.getId()) || overlap(agenda, novaAgenda));
+    }
 
-    //     for (Agenda agendamentoExistente : agendamentosDoProfessor) {
-    //         if (hasConflitoDeHorario(agendamentoExistente, agenda)) {
-    //             return false;
-    //         }
-    //     }
+    private boolean overlap(Agenda agendaExistente, Agenda novaAgenda) {
+        return (novaAgenda.getDataInicio().isBefore(agendaExistente.getDataFim()) || novaAgenda.getDataInicio().equals(agendaExistente.getDataFim())) &&
+                (novaAgenda.getDataFim().isAfter(agendaExistente.getDataInicio()) || novaAgenda.getDataFim().equals(agendaExistente.getDataInicio()));
+    }
 
-    //     String especializacaoNecessaria = agenda.getCurso().getEspecializacao();
-
-
-    //     return agenda.getProfessor().getEspecializacoes().contains(especializacaoNecessaria);
-    // }
-
-    // private boolean hasConflitoDeHorario(Agenda agendaExistente, Agenda novaAgenda) {
-    //     return agendaExistente.getDataInicio().isBefore(novaAgenda.getDataFim())
-    //             && agendaExistente.getDataFim().isAfter(novaAgenda.getDataInicio())
-    //             && agendaExistente.getHorarioInicio().isBefore(novaAgenda.getHorarioFim())
-    //             && agendaExistente.getHorarioFim().isAfter(novaAgenda.getHorarioInicio());
-    // }
 }
 

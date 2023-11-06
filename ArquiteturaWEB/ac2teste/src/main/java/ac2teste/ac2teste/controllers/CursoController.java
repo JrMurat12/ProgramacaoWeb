@@ -23,20 +23,10 @@ public class CursoController {
     @Autowired
     private CursoService cursoService;
 
-    // @GetMapping
-    // public List<Curso> getAllCursos() {
-    //     return cursoService.getAllCursos();
-    // }
-
     @GetMapping
     public List<CursoDTO> getAllCursos() {
         return cursoService.getAllCursos();
     }
-
-    // @GetMapping("/{id}")
-    // public Curso getCursoById(@PathVariable Long id) {
-    //     return cursoService.getCursoById(id);
-    // }
 
     @GetMapping("/{id}")
     public DadosCursoDTO getCursoById(@PathVariable Long id) {
@@ -57,18 +47,6 @@ public class CursoController {
     public void deleteCurso(@PathVariable Long id) {
         cursoService.deleteCurso(id);
     }
-    
-    // @PostMapping("/{cursoId}/professores/{professorId}")
-    // public void addProfessorToCurso(
-    //         @PathVariable Long cursoId, @PathVariable Long professorId) {
-    //     cursoService.addProfessorToCurso(cursoId, professorId);
-    // }
-    
-    // @DeleteMapping("/{cursoId}/professores/{professorId}")
-    // public void removeProfessorFromCurso(
-    //         @PathVariable Long cursoId, @PathVariable Long professorId) {
-    //     cursoService.removeProfessorFromCurso(cursoId, professorId);
-    // }
 }
 
 

@@ -23,20 +23,10 @@ public class ProfessorController {
     @Autowired
     private ProfessorService professorService;
 
-    // @GetMapping
-    // public List<Professor> getAllProfessores() {
-    //     return professorService.getAllProfessores();
-    // }
-
     @GetMapping
     public List<ProfessorDTO> getAllProfessores() {
         return professorService.getAllProfessores();
     }
-
-    // @GetMapping("/{id}")
-    // public Professor getProfessorById(@PathVariable Long id) {
-    //     return professorService.getProfessorById(id);
-    // }
 
     @GetMapping("/{id}")
     public DadosProfessorDTO getProfessorById(@PathVariable Long id) {

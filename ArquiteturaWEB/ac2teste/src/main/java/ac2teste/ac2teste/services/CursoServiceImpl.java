@@ -20,13 +20,6 @@ public class CursoServiceImpl implements CursoService {
     @Autowired
     private CursoRepository cursoRepository;
 
-    // @Autowired
-    // private ProfessorRepository professorRepository;
-
-    // public List<Curso> getAllCursos() {
-    //     return cursoRepository.findAll();
-    // }
-
     @Override
     public List<CursoDTO> getAllCursos() {
         List<CursoDTO> cursos = cursoRepository
@@ -46,10 +39,6 @@ public class CursoServiceImpl implements CursoService {
 
         return cursos;
     }
-
-    // public Curso getCursoById(Long id) {
-    //     return cursoRepository.findById(id).orElse(null);
-    // }
 
     @Override
     public DadosCursoDTO getCursoById(Long id) {
@@ -112,33 +101,6 @@ public class CursoServiceImpl implements CursoService {
         cursoRepository.delete(curso);
     }
 
-    // public void addProfessorToCurso(Long cursoId, Long professorId) {
-    //     Curso curso = cursoRepository.findById(cursoId)
-    //             .orElseThrow(() -> new RegraNegocioException("Curso não encontrado com o ID especificado."));
-
-    //     Professor professor = professorRepository.findById(professorId)
-    //             .orElseThrow(() -> new RegraNegocioException("Professor não encontrado com o ID especificado."));
-
-    //     curso.getProfessores().add(professor);
-        
-    //     cursoRepository.save(curso);
-    // }
-
-    // public void removeProfessorFromCurso(Long cursoId, Long professorId) {
-    //     Curso curso = cursoRepository.findById(cursoId)
-    //             .orElseThrow(() -> new RegraNegocioException("Curso não encontrado com o ID especificado."));
-        
-    //     Professor professor = professorRepository.findById(professorId)
-    //             .orElseThrow(() -> new RegraNegocioException("Professor não encontrado com o ID especificado."));
-
-    //     if (curso.getProfessores().contains(professor)) {
-    //         curso.getProfessores().remove(professor);
-            
-    //         cursoRepository.save(curso);
-    //     } else {
-    //         throw new RegraNegocioException("O professor não está associado a este curso.");
-    //     }
-    // }
 }
 
 

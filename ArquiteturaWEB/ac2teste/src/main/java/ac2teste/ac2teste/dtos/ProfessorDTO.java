@@ -16,7 +16,4 @@ public class ProfessorDTO {
     private String rg;
     private String endereco;
     private String celular;
-
-    // private CursoDTO cursos;
-    // private AgendaDTO agendas;
 }

@@ -25,10 +25,6 @@ public class ProfessorServiceImpl implements ProfessorService {
     @Autowired
     private CursoRepository cursoRepository;
 
-    // public List<Professor> getAllProfessores() {
-    //     return professorRepository.findAll();
-    // }
-
     @Override
     public List<ProfessorDTO> getAllProfessores() {
         List<ProfessorDTO> cursos = professorRepository.findAll().stream().map(
@@ -46,10 +42,6 @@ public class ProfessorServiceImpl implements ProfessorService {
 
         return cursos;
     }
-
-    // public Professor getProfessorById(Long id) {
-    //     return professorRepository.findById(id).orElse(null);
-    // }
 
     @Override
     public DadosProfessorDTO getProfessorById(Long id) {

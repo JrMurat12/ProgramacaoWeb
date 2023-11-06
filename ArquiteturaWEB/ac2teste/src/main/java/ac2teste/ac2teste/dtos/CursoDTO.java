@@ -15,6 +15,4 @@ public class CursoDTO {
     private double cargaHoraria;
     private String objetivos;
     private String ementa;
-
-    // private ProfessorDTO professores;
 }
