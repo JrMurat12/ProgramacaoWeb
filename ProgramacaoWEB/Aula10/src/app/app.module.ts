@@ -15,9 +15,10 @@ import { CadastroAlunoComponent } from './cadastro-aluno/cadastro-aluno.componen
 import { ApoliceSeguroComponent } from './apolice-seguro/apolice-seguro.component';
 import { TemplateDrivenComponent } from './template-driven/template-driven.component';
 import { GerenciadorTarefasComponent } from './gerenciador-tarefas/gerenciador-tarefas.component';
+import { UsuarioComponent } from './usuario/usuario.component';
 
 @NgModule({
-  declarations: [AppComponent, MenuSuperiorComponent, CalculadoraComponent, CalcularMediaComponent, TelaPaiComponent, TelaFilho1Component, TelaFilho2Component, CadastroAlunoComponent, ApoliceSeguroComponent, TemplateDrivenComponent, GerenciadorTarefasComponent],
+  declarations: [AppComponent, MenuSuperiorComponent, CalculadoraComponent, CalcularMediaComponent, TelaPaiComponent, TelaFilho1Component, TelaFilho2Component, CadastroAlunoComponent, ApoliceSeguroComponent, TemplateDrivenComponent, GerenciadorTarefasComponent, UsuarioComponent],
   imports: [BrowserModule, AppRoutingModule, NgbModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],

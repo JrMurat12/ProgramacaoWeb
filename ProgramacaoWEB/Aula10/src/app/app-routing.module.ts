@@ -9,6 +9,8 @@ import { CadastroAlunoComponent } from './cadastro-aluno/cadastro-aluno.componen
 import { ApoliceSeguroComponent } from './apolice-seguro/apolice-seguro.component';
 import { TemplateDrivenComponent } from './template-driven/template-driven.component';
 import { GerenciadorTarefasComponent } from './gerenciador-tarefas/gerenciador-tarefas.component';
+import { UsuarioComponent } from './usuario/usuario.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   { path: 'calculadora', component: CalculadoraComponent },
@@ -24,10 +26,11 @@ const routes: Routes = [
   ] },
   { path: 'template-driven', component: TemplateDrivenComponent },
   { path: 'gerenciador-tarefas', component: GerenciadorTarefasComponent },
+  { path: 'usuario', component: UsuarioComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes), HttpClientModule,],
   exports: [RouterModule],
 })
 export class AppRoutingModule { }
