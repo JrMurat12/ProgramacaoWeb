@@ -2,22 +2,10 @@ package com.example.aula3.repository;
 
 import java.util.List;
 
-import javax.swing.text.html.parser.Entity;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Repository;
-
-import com.example.aula3.models.CategoriaCurso;
 // import com.example.aula3.models.CategoriaCurso;
 import com.example.aula3.models.Curso;
-
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.TypedQuery;
-import jakarta.transaction.Transactional;
 
 public interface CursoRepository extends JpaRepository<Curso, Long> {
     List<Curso> findByNomeLike(String nome);
