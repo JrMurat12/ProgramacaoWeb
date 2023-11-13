@@ -81,7 +81,7 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService {
         if (senhaOK) {
             return user;
         }
-        throw new RegraNegocioException("Senha inválida");
+        throw new RegraNegocioException("Usuário ou Senha inválido");
     }
 
 
